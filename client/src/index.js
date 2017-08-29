@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import configureStore from "./store/configureStore";
 import "./index.css";
-import App from "./Containers/App/App";
+import App from "./containers/App/App";
 import registerServiceWorker from "./registerServiceWorker";
 
 import "spectre.css/dist/spectre.min.css";
