@@ -1,27 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import * as actions from "../../actions";
+import Category from "../../components/Category";
 
 class Categories extends React.Component {
-  componentDidMount = () => {
-    this.props.loadCategories();
-  };
-
   render = () => {
-    return null;
+    return (
+      <div>
+        <ul>
+          {this.props.categories.map((category, i) => (
+            <Category name={category.name} path={category.path} key={i} />
+          ))}
+        </ul>
+      </div>
+    );
   };
 }
 
 Categories.propTypes = {
-  loadCategories: PropTypes.func.isRequired
+  categories: PropTypes.arrayOf(Object).isRequired
 };
 
-function mapStateToProps(state, props) {}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actions, dispatch);
+function mapStateToProps({ categories }, props) {
+  return { categories };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Categories);
+export default connect(mapStateToProps)(Categories);
