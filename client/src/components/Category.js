@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const Category = ({ name, path }) => (
   <li>
-    <a href={path}>{name}</a>
+    <a href={`/${path}/posts`}>{name}</a>
   </li>
 );
 
