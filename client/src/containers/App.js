@@ -9,6 +9,7 @@ class App extends Component {
       <div>
         <Header title="Readable" />
         <Categories />
+        <Posts />
       </div>
     );
   }
