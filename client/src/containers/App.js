@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 
-import Categories from "../Categories/Categories";
-import Header from "../../components/Header";
+import Categories from "./Categories";
+import Posts from "./Posts";
+import Header from "../components/Header";
 
 class App extends Component {
   render() {

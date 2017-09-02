@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import configureStore from "./store/configureStore";
 import { loadCategories } from "./actions";
 import "./index.css";
-import App from "./containers/App/App";
+import App from "./containers/App";
 import registerServiceWorker from "./registerServiceWorker";
 import defaultState from "./store/defaultState";
 import "spectre.css/dist/spectre.min.css";
