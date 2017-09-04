@@ -8,11 +8,11 @@ class Posts extends React.Component {
     return (
       <div>
         <h1>Posts</h1>
-        {this.props.postsForCategory.map((post, i) => (
-          <ul>
+        <ul>
+          {this.props.postsForCategory.map((post, i) => (
             <Post key={i} {...post} />
-          </ul>
-        ))}
+          ))}
+        </ul>
       </div>
     );
   }
@@ -23,11 +23,13 @@ Posts.propTypes = {
 };
 
 function mapStateToProps(state, props) {
+  const posts =
+    state.currentCategory === "all"
+      ? state.posts
+      : state.posts.filter(post => post.category === state.currentCategory);
+
   return {
-    postsForCategory:
-      state.currentCategory === "all"
-        ? state.posts
-        : state.posts.filter(post => post.category === state.currentCategory)
+    postsForCategory: posts.sort((a, b) => b.voteScore - a.voteScore)
   };
 }
 

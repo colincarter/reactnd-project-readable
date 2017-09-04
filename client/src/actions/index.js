@@ -14,7 +14,6 @@ export function loadCategories() {
 export function loadAllPosts() {
   return async dispatch => {
     const postData = await PostsAPI.loadAllPosts();
-    console.log(postData);
     const posts = get(postData, "data", []);
     dispatch(addPosts(posts));
   };

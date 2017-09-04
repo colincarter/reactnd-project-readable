@@ -20,7 +20,7 @@ const defaultData = {
     body: "Just kidding. It takes more than 10 minutes to learn technology.",
     author: "thingone",
     category: "redux",
-    voteScore: -5,
+    voteScore: 7,
     deleted: false
   }
 };
