@@ -1,6 +1,7 @@
 import { get } from "lodash";
 import CategoriesAPI from "../api/categories";
-import { ADD_CATEGORIES } from "../constants";
+import PostsAPI from "../api/posts";
+import { ADD_CATEGORIES, ADD_POSTS } from "../constants";
 
 export function loadCategories() {
   return async dispatch => {
@@ -10,9 +11,25 @@ export function loadCategories() {
   };
 }
 
+export function loadAllPosts() {
+  return async dispatch => {
+    const postData = await PostsAPI.loadAllPosts();
+    console.log(postData);
+    const posts = get(postData, "data", []);
+    dispatch(addPosts(posts));
+  };
+}
+
 const addCategories = categories => {
   return {
     type: ADD_CATEGORIES,
     categories
+  };
+};
+
+const addPosts = posts => {
+  return {
+    type: ADD_POSTS,
+    posts
   };
 };

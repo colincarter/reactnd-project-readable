@@ -8,7 +8,9 @@ class Posts extends React.Component {
     return (
       <div>
         <h1>Posts</h1>
-        {this.props.postsForCategory.map(post => <Post />)}
+        {this.props.postsForCategory.map((post, i) => (
+          <Post key={i} {...post} />
+        ))}
       </div>
     );
   }
