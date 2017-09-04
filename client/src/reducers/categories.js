@@ -11,4 +11,8 @@ const categories = (state = defaultState.categories, action) => {
   }
 };
 
-export default categories;
+const currentCategory = (state = defaultState.currentCategory, action) => {
+  return state;
+};
+
+export { categories, currentCategory };

@@ -1,7 +1,10 @@
 import { combineReducers } from "redux";
-import categories from "./categories";
+import { categories, currentCategory } from "./categories";
+import posts from "./posts";
 
 const rootReducer = combineReducers({
-  categories
+  categories,
+  posts,
+  currentCategory
 });
 export default rootReducer;
