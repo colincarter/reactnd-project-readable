@@ -9,7 +9,9 @@ class Posts extends React.Component {
       <div>
         <h1>Posts</h1>
         {this.props.postsForCategory.map((post, i) => (
-          <Post key={i} {...post} />
+          <ul>
+            <Post key={i} {...post} />
+          </ul>
         ))}
       </div>
     );
