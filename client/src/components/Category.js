@@ -1,12 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as actionCreators from "../actions";
 
 class Category extends React.Component {
   handleOnClick = event => {
     event.preventDefault();
     const category = event.target.dataset.category;
-    this.props.dispatch(setCurrentCategory(category));
+    this.props.setCurrentCategory(category);
   };
 
   render = () => {
@@ -28,15 +30,12 @@ class Category extends React.Component {
 
 Category.propTypes = {
   name: PropTypes.string.isRequired,
-  path: PropTypes.string.isRequired
+  path: PropTypes.string.isRequired,
+  setCurrentCategory: PropTypes.func.isRequired
 };
 
-function mapStateToProps(state, props) {
-  return {};
-}
-
 function mapDispatchToProps(dispatch) {
-  return {};
+  return bindActionCreators(actionCreators, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Category);
+export default connect(null, mapDispatchToProps)(Category);

@@ -1,7 +1,7 @@
 import defaultState from "../store/defaultState";
-import { ADD_CATEGORIES } from "../constants";
+import { ADD_CATEGORIES, SET_CATEGORY } from "../constants";
 
-const categories = (state = defaultState.categories, action) => {
+export const categories = (state = defaultState.categories, action) => {
   switch (action.type) {
     case ADD_CATEGORIES:
       return action.categories;
@@ -11,8 +11,15 @@ const categories = (state = defaultState.categories, action) => {
   }
 };
 
-const currentCategory = (state = defaultState.currentCategory, action) => {
-  return state;
-};
+export const currentCategory = (
+  state = defaultState.currentCategory,
+  action
+) => {
+  switch (action.type) {
+    case SET_CATEGORY:
+      return action.currentCategory;
 
-export { categories, currentCategory };
+    default:
+      return state;
+  }
+};
