@@ -8,8 +8,9 @@ class Categories extends React.Component {
     return (
       <div>
         <ul>
+          <Category name="all" path="all" key={0} />
           {this.props.categories.map((category, i) => (
-            <Category name={category.name} path={category.path} key={i} />
+            <Category name={category.name} path={category.path} key={i + 1} />
           ))}
         </ul>
       </div>
