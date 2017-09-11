@@ -2,12 +2,19 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Post from "../components/Post";
+import Sort from "../components/Sort";
 
 class Posts extends React.Component {
   render() {
     return (
       <div>
         <h1>Posts</h1>
+        <div>
+          Sorted by:
+          <span>
+            <Sort fields={["voteScore", "timestamp"]} />
+          </span>
+        </div>
         <ul>
           {this.props.postsForCategory.map((post, i) => (
             <Post key={i} {...post} />
