@@ -1,7 +1,12 @@
 import { get } from "lodash";
 import CategoriesAPI from "../api/categories";
 import PostsAPI from "../api/posts";
-import { ADD_CATEGORIES, ADD_POSTS, SET_CATEGORY } from "../constants";
+import {
+  ADD_CATEGORIES,
+  ADD_POSTS,
+  SET_CATEGORY,
+  SET_CURRENT_SORT
+} from "../constants";
 
 export function loadCategories() {
   return async dispatch => {
@@ -23,6 +28,13 @@ export function setCurrentCategory(currentCategory) {
   return {
     type: SET_CATEGORY,
     currentCategory
+  };
+}
+
+export function setCurrentSort(currentSort) {
+  return {
+    type: SET_CURRENT_SORT,
+    currentSort
   };
 }
 

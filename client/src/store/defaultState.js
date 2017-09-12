@@ -1,7 +1,8 @@
 const defaultState = {
   categories: [],
   currentCategory: "all",
-  posts: []
+  posts: [],
+  currentSort: ""
 };
 
 export default defaultState;
