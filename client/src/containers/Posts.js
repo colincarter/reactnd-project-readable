@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actionCreators from "../actions";
+import { ALL_POSTS } from "../constants";
 import Post from "../components/Post";
 import Sort from "../components/Sort";
 
@@ -44,7 +45,7 @@ Posts.propTypes = {
 
 function mapStateToProps(state, props) {
   const posts =
-    state.currentCategory === "all"
+    state.currentCategory === ALL_POSTS
       ? state.posts
       : state.posts.filter(post => post.category === state.currentCategory);
 

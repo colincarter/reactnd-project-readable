@@ -1,6 +1,8 @@
+import { ALL_POSTS } from "../constants";
+
 const defaultState = {
   categories: [],
-  currentCategory: "all",
+  currentCategory: ALL_POSTS,
   posts: [],
   currentSort: ""
 };
