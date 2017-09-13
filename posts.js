@@ -22,6 +22,26 @@ const defaultData = {
     category: "redux",
     voteScore: 7,
     deleted: false
+  },
+  "7ni6ok3ym7mf1p33lnez": {
+    id: "7ni6ok3ym7mf1p33lnez",
+    timestamp: 1467166872634,
+    title: "Learn React in 10 years!",
+    body: "No really.  Take your time",
+    author: "thingone",
+    category: "react",
+    voteScore: 4,
+    deleted: false
+  },
+  "8ni6ok3ym7mf1p33lnez": {
+    id: "8ni6ok3ym7mf1p33lnez",
+    timestamp: 1467166872634,
+    title: "Advanced Redux!",
+    body: "Is there such a thing?",
+    author: "thingone",
+    category: "redux",
+    voteScore: 8,
+    deleted: false
   }
 };
 
