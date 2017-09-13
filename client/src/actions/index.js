@@ -24,6 +24,13 @@ export function loadAllPosts() {
   };
 }
 
+export function loadCommentsForPost(postId) {
+  return async dispatch => {
+    const comments = await PostsAPI.loadComments(postId);
+    console.log(comments);
+  };
+}
+
 export function setCurrentCategory(currentCategory) {
   return {
     type: SET_CATEGORY,
