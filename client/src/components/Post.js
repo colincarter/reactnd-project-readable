@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const Post = ({
   id,
@@ -13,7 +14,9 @@ const Post = ({
 }) => {
   return (
     <li>
-      {title}({category}) - ({voteScore})
+      <Link to={`/comment/${id}`}>
+        {title} ({category}) - ({voteScore})
+      </Link>
     </li>
   );
 };
