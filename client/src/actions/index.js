@@ -5,7 +5,8 @@ import {
   ADD_CATEGORIES,
   ADD_POSTS,
   SET_CATEGORY,
-  SET_CURRENT_SORT
+  SET_CURRENT_SORT,
+  ADD_COMMENTS
 } from "../constants";
 
 export function loadCategories() {
@@ -26,8 +27,9 @@ export function loadAllPosts() {
 
 export function loadCommentsForPost(postId) {
   return async dispatch => {
-    const comments = await PostsAPI.loadComments(postId);
-    console.log(comments);
+    const commentData = await PostsAPI.loadComments(postId);
+    const comments = get(commentData, "data", []);
+    dispatch(addComments(comments));
   };
 }
 
@@ -56,5 +58,12 @@ const addPosts = posts => {
   return {
     type: ADD_POSTS,
     posts
+  };
+};
+
+const addComments = comments => {
+  return {
+    type: ADD_COMMENTS,
+    comments
   };
 };
