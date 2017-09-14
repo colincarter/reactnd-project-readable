@@ -20,7 +20,7 @@ ReactDOM.render(
     <Router>
       <Switch>
         <Route exact path="/" component={App} />
-        <Route path="/comments/:postId" component={Comments} />
+        <Route path="/post/:postId" component={Comments} />
       </Switch>
     </Router>
   </Provider>,

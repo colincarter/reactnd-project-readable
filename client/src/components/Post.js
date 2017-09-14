@@ -14,7 +14,7 @@ const Post = ({
 }) => {
   return (
     <li>
-      <Link to={`/comments/${id}`}>
+      <Link to={`/post/${id}/comments`}>
         {title} ({category}) - ({voteScore})
       </Link>
     </li>
