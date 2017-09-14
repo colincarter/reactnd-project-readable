@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import Categories from "./Categories";
-import Posts from "./Posts";
+import PostSummaries from "./PostSummaries";
 import Header from "../components/Header";
 
 class App extends Component {
@@ -10,7 +10,7 @@ class App extends Component {
       <div>
         <Header title="Readable" />
         <Categories />
-        <Posts />
+        <PostSummaries />
       </div>
     );
   }

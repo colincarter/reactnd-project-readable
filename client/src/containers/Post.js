@@ -1,25 +1,25 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actionCreators from "../actions";
-import { ALL_POSTS } from "../constants";
-import Post from "../components/Post";
 import Sort from "../components/Sort";
+import PostSummaryLine from "../components/PostSummaryLine";
 
-class Posts extends React.Component {
+class Post extends React.Component {
   componentDidMount = () => {
-    this.props.setCurrentSort("voteScore");
+    this.props.loadCommentsForPost(this.props.match.params.postId);
   };
 
   onSortChange = event => {
     this.props.setCurrentSort(event.target.value);
   };
 
-  render = () => {
+  render() {
     return (
       <div>
-        <h1>Posts</h1>
+        <PostSummaryLine {...this.props.post} />
+
+        <h1>Comments</h1>
         <div>
           Sorted by:
           <span>
@@ -30,29 +30,24 @@ class Posts extends React.Component {
           </span>
         </div>
         <ul>
-          {this.props.postsForCategory.map((post, i) => (
-            <Post key={i} {...post} />
+          {this.props.comments.map((comment, i) => (
+            <li key={i}>
+              {comment.body} - {comment.timestamp} - {comment.voteScore}
+            </li>
           ))}
         </ul>
       </div>
     );
-  };
+  }
 }
 
-Posts.propTypes = {
-  postsForCategory: PropTypes.arrayOf(Object).isRequired
-};
-
 function mapStateToProps(state, props) {
-  const posts =
-    state.currentCategory === ALL_POSTS
-      ? state.posts
-      : state.posts.filter(post => post.category === state.currentCategory);
-
   const sortKey = state.currentSort;
+  const postId = props.match.params.postId;
 
   return {
-    postsForCategory: posts.concat().sort((a, b) => b[sortKey] - a[sortKey])
+    comments: state.comments.concat().sort((a, b) => b[sortKey] - a[sortKey]),
+    post: state.posts.find(post => post.id === postId)
   };
 }
 
@@ -60,4 +55,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(actionCreators, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Posts);
+export default connect(mapStateToProps, mapDispatchToProps)(Post);

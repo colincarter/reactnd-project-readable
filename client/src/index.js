@@ -6,7 +6,7 @@ import configureStore from "./store/configureStore";
 import { loadCategories, loadAllPosts } from "./actions";
 import "./index.css";
 import App from "./containers/App";
-import Comments from "./containers/Comments";
+import Post from "./containers/Post";
 import registerServiceWorker from "./registerServiceWorker";
 import defaultState from "./store/defaultState";
 import "spectre.css/dist/spectre.min.css";
@@ -20,7 +20,7 @@ ReactDOM.render(
     <Router>
       <Switch>
         <Route exact path="/" component={App} />
-        <Route path="/post/:postId" component={Comments} />
+        <Route path="/post/:postId" component={Post} />
       </Switch>
     </Router>
   </Provider>,

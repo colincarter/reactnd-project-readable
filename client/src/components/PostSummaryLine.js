@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const Post = ({
+const PostSummaryLine = ({
   id,
   author,
   body,
@@ -13,15 +13,13 @@ const Post = ({
   voteScore
 }) => {
   return (
-    <li>
-      <Link to={`/post/${id}/comments`}>
-        {title} ({category}) - ({voteScore})
-      </Link>
-    </li>
+    <Link to={`/post/${id}/comments`}>
+      {title} ({category}) - ({voteScore})
+    </Link>
   );
 };
 
-Post.propTypes = {
+PostSummaryLine.propTypes = {
   id: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
@@ -32,4 +30,4 @@ Post.propTypes = {
   voteScore: PropTypes.number.isRequired
 };
 
-export default Post;
+export default PostSummaryLine;
