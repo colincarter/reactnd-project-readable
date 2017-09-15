@@ -31,7 +31,7 @@ class PostSummaries extends React.Component {
         </div>
         <ul>
           {this.props.postsForCategory.map((post, i) => (
-            <li>
+            <li key={i}>
               <PostSummaryLine key={i} {...post} />
             </li>
           ))}

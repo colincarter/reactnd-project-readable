@@ -1,35 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
+import RaisedButton from "material-ui/RaisedButton";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actionCreators from "../actions";
 
 class Category extends React.Component {
-  handleOnClick = event => {
-    event.preventDefault();
-    const category = event.target.dataset.category;
-    this.props.setCurrentCategory(category);
+  handleOnClick = path => {
+    this.props.setCurrentCategory(path);
   };
 
-  render = () => {
-    const { path, name } = this.props;
+  style = { margin: 12 };
 
+  render = () => {
     return (
-      <li>
-        <a
-          href={`/${path}/posts`}
-          data-category={path}
-          onClick={this.handleOnClick}
-        >
-          {name}
-        </a>
-      </li>
+      <RaisedButton
+        label={this.props.path}
+        style={this.style}
+        data-category={this.props.path}
+        onClick={event => {
+          this.handleOnClick(this.props.path);
+        }}
+      />
     );
   };
 }
 
 Category.propTypes = {
-  name: PropTypes.string.isRequired,
   path: PropTypes.string.isRequired,
   setCurrentCategory: PropTypes.func.isRequired
 };
