@@ -2,12 +2,33 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+
+import { List, ListItem } from "material-ui/List";
+import {
+  Toolbar,
+  ToolbarGroup,
+  ToolbarSeparator,
+  ToolbarTitle
+} from "material-ui/Toolbar";
+import RaisedButton from "material-ui/RaisedButton";
+import NavigationExpandMoreIcon from "material-ui/svg-icons/navigation/expand-more";
+import MenuItem from "material-ui/MenuItem";
+import DropDownMenu from "material-ui/DropDownMenu";
+import IconMenu from "material-ui/IconMenu";
+import IconButton from "material-ui/IconButton";
+import FontIcon from "material-ui/FontIcon";
+
+import { Link } from "react-router-dom";
 import * as actionCreators from "../actions";
 import { ALL_POSTS } from "../constants";
 import PostSummaryLine from "../components/PostSummaryLine";
 import Sort from "../components/Sort";
 
 class PostSummaries extends React.Component {
+  linkStyle = {
+    textDecoration: "none"
+  };
+
   componentDidMount = () => {
     this.props.setCurrentSort("voteScore");
   };
@@ -19,23 +40,37 @@ class PostSummaries extends React.Component {
   render = () => {
     return (
       <div>
-        <h1>Posts</h1>
-        <div>
-          Sorted by:
-          <span>
-            <Sort
-              fields={["voteScore", "timestamp"]}
-              onChange={this.onSortChange}
-            />
-          </span>
-        </div>
-        <ul>
+        <Toolbar>
+          <ToolbarGroup>
+            <ToolbarTitle text="Posts" />
+
+            <FontIcon className="muidocs-icon-custom-sort" />
+
+            <IconMenu
+              iconButtonElement={
+                <IconButton touch={true}>
+                  <NavigationExpandMoreIcon />
+                </IconButton>
+              }
+            >
+              <MenuItem primaryText="voteScore" />
+              <MenuItem primaryText="timestamp" />
+            </IconMenu>
+            <ToolbarSeparator />
+            <RaisedButton label="New Post" primary={true} />
+          </ToolbarGroup>
+        </Toolbar>
+        <List>
           {this.props.postsForCategory.map((post, i) => (
-            <li key={i}>
-              <PostSummaryLine key={i} {...post} />
-            </li>
+            <Link to={`/post/${post.id}/comments`} style={this.linkStyle}>
+              <ListItem
+                key={i}
+                primaryText={post.title}
+                secondaryText={`${post.category} - ${post.voteScore}`}
+              />
+            </Link>
           ))}
-        </ul>
+        </List>
       </div>
     );
   };
