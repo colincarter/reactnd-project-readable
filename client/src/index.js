@@ -9,7 +9,6 @@ import App from "./containers/App";
 import Post from "./containers/Post";
 import registerServiceWorker from "./registerServiceWorker";
 import defaultState from "./store/defaultState";
-import "spectre.css/dist/spectre.min.css";
 
 const store = configureStore(defaultState);
 store.dispatch(loadCategories());
