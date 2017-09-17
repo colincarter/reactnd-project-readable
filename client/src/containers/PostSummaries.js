@@ -13,7 +13,6 @@ import {
 import RaisedButton from "material-ui/RaisedButton";
 import NavigationExpandMoreIcon from "material-ui/svg-icons/navigation/expand-more";
 import MenuItem from "material-ui/MenuItem";
-import DropDownMenu from "material-ui/DropDownMenu";
 import IconMenu from "material-ui/IconMenu";
 import IconButton from "material-ui/IconButton";
 import FontIcon from "material-ui/FontIcon";
@@ -21,8 +20,6 @@ import FontIcon from "material-ui/FontIcon";
 import { Link } from "react-router-dom";
 import * as actionCreators from "../actions";
 import { ALL_POSTS } from "../constants";
-import PostSummaryLine from "../components/PostSummaryLine";
-import Sort from "../components/Sort";
 
 class PostSummaries extends React.Component {
   linkStyle = {
@@ -33,8 +30,9 @@ class PostSummaries extends React.Component {
     this.props.setCurrentSort("voteScore");
   };
 
-  onSortChange = event => {
-    this.props.setCurrentSort(event.target.value);
+  onSortChange = (event, value) => {
+    console.log({ event, value });
+    this.props.setCurrentSort(value);
   };
 
   render = () => {
@@ -47,22 +45,29 @@ class PostSummaries extends React.Component {
             <FontIcon className="muidocs-icon-custom-sort" />
 
             <IconMenu
+              onChange={this.onSortChange}
               iconButtonElement={
                 <IconButton touch={true}>
                   <NavigationExpandMoreIcon />
                 </IconButton>
               }
             >
-              <MenuItem primaryText="voteScore" />
-              <MenuItem primaryText="timestamp" />
+              <MenuItem primaryText="voteScore" value="voteScore" />
+              <MenuItem primaryText="timestamp" value="timestamp" />
             </IconMenu>
             <ToolbarSeparator />
-            <RaisedButton label="New Post" primary={true} />
+            <Link to="/post/new">
+              <RaisedButton label="New Post" primary={true} />{" "}
+            </Link>
           </ToolbarGroup>
         </Toolbar>
         <List>
           {this.props.postsForCategory.map((post, i) => (
-            <Link to={`/post/${post.id}/comments`} style={this.linkStyle}>
+            <Link
+              to={`/post/${post.id}/comments`}
+              style={this.linkStyle}
+              key={i}
+            >
               <ListItem
                 key={i}
                 primaryText={post.title}
