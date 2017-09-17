@@ -7,6 +7,7 @@ import { loadCategories, loadAllPosts } from "./actions";
 import "./index.css";
 import App from "./containers/App";
 import Post from "./containers/Post";
+import NewPost from "./containers/NewPost";
 import registerServiceWorker from "./registerServiceWorker";
 import defaultState from "./store/defaultState";
 
@@ -19,6 +20,7 @@ ReactDOM.render(
     <Router>
       <Switch>
         <Route exact path="/" component={App} />
+        <Route exact path="/post/new" component={NewPost} />
         <Route path="/post/:postId" component={Post} />
       </Switch>
     </Router>
