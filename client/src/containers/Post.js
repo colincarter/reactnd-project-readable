@@ -1,9 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import { Toolbar, ToolbarGroup, ToolbarTitle } from "material-ui/Toolbar";
+import Paper from "material-ui/Paper";
+
 import * as actionCreators from "../actions";
 import Sort from "../components/Sort";
 import PostSummaryLine from "../components/PostSummaryLine";
+import Header from "../components/Header";
 
 class Post extends React.Component {
   componentDidMount = () => {
@@ -14,29 +20,25 @@ class Post extends React.Component {
     this.props.setCurrentSort(event.target.value);
   };
 
+  style = {
+    height: 100,
+    width: 400,
+    marginLeft: 10,
+    marginRight: 10,
+    // textAlign: "center",
+    display: "inline-block"
+  };
+
   render() {
     return (
-      <div>
-        <PostSummaryLine {...this.props.post} />
-
-        <h1>Comments</h1>
+      <MuiThemeProvider>
         <div>
-          Sorted by:
-          <span>
-            <Sort
-              fields={["voteScore", "timestamp"]}
-              onChange={this.onSortChange}
-            />
-          </span>
+          <Header title="Readable" />
+          <Paper style={this.style} zDepth={2}>
+            <p>Hello</p>
+          </Paper>
         </div>
-        <ul>
-          {this.props.comments.map((comment, i) => (
-            <li key={i}>
-              {comment.body} - {comment.timestamp} - {comment.voteScore}
-            </li>
-          ))}
-        </ul>
-      </div>
+      </MuiThemeProvider>
     );
   }
 }
