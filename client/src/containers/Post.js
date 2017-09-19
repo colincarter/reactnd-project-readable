@@ -46,7 +46,7 @@ Post.propTypes = {
   history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
   loadCommentsForPost: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired
+  post: PropTypes.object
 };
 
 function mapStateToProps(state, props) {
