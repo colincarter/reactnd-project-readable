@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import moment from "moment";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 
@@ -32,7 +33,11 @@ class Post extends React.Component {
             <p>{this.props.post.body}</p>
             <p>
               {this.props.post.author}
-              <span>{this.props.post.timestamp}</span>
+              <span>
+                {moment(this.props.post.timestamp).format(
+                  "MMMM Do YYYY, h:mm:ss a"
+                )}
+              </span>
             </p>
             <Comments comments={this.props.comments} />
           </div>

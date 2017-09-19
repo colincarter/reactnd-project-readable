@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { List, ListItem } from "material-ui/List";
+import moment from "moment";
 
 const Comments = ({ comments }) => {
   if (comments && comments.length === 0) {
@@ -15,7 +16,10 @@ const Comments = ({ comments }) => {
           primaryText={comment.body}
           secondaryText={
             <p>
-              {comment.author} <span>{comment.timestamp}</span>
+              {comment.author}
+              <span>
+                {moment(comment.timestamp).format("MMMM Do YYYY, h:mm:ss a")}
+              </span>
             </p>
           }
         />

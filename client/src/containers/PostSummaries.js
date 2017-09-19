@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import moment from "moment";
 
 import { List, ListItem } from "material-ui/List";
 import {
@@ -70,8 +71,19 @@ class PostSummaries extends React.Component {
             >
               <ListItem
                 key={i}
-                primaryText={post.title}
-                secondaryText={`${post.category} - ${post.voteScore}`}
+                primaryText={
+                  <p>
+                    {post.voteScore} <span>{post.title}</span>
+                  </p>
+                }
+                secondaryText={
+                  <p>
+                    {post.category}{" "}
+                    <span>
+                      {moment(post.timestamp).format("MMMM Do YYYY, h:mm:ss a")}
+                    </span>
+                  </p>
+                }
               />
             </Link>
           ))}
