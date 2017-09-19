@@ -4,11 +4,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import { Toolbar, ToolbarGroup, ToolbarTitle } from "material-ui/Toolbar";
 
 import * as actionCreators from "../actions";
-import Sort from "../components/Sort";
-import PostSummaryLine from "../components/PostSummaryLine";
 import Header from "../components/Header";
 import Comments from "../components/Comments";
 
