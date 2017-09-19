@@ -2,15 +2,26 @@ import React from "react";
 import PropTypes from "prop-types";
 import AppBar from "material-ui/AppBar";
 
-const Header = ({ title, history }) => {
-  const onButtonClick = () => {
-    history.push("/");
+class Header extends React.Component {
+  onButtonClick = () => {
+    if (this.props.history) {
+      this.props.history.push("/");
+    }
   };
-  return <AppBar title={title} onLeftIconButtonTouchTap={onButtonClick} />;
-};
+
+  render() {
+    return (
+      <AppBar
+        title={this.props.title}
+        onLeftIconButtonTouchTap={this.onButtonClick}
+      />
+    );
+  }
+}
 
 Header.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  header: PropTypes.object
 };
 
 export default Header;
