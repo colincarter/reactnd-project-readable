@@ -1,6 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 import { List, ListItem } from "material-ui/List";
+import {
+  Toolbar,
+  ToolbarGroup,
+  ToolbarSeparator,
+  ToolbarTitle
+} from "material-ui/Toolbar";
+import MenuItem from "material-ui/MenuItem";
+import IconMenu from "material-ui/IconMenu";
+import IconButton from "material-ui/IconButton";
+import RaisedButton from "material-ui/RaisedButton";
+import NavigationExpandMoreIcon from "material-ui/svg-icons/navigation/expand-more";
+
+import { Link } from "react-router-dom";
+
 import moment from "moment";
 
 const Comments = ({ comments }) => {
@@ -9,22 +24,45 @@ const Comments = ({ comments }) => {
   }
 
   return (
-    <List>
-      {comments.map((comment, i) => (
-        <ListItem
-          key={i}
-          primaryText={comment.body}
-          secondaryText={
-            <p>
-              {comment.author}
-              <span>
-                {moment(comment.timestamp).format("MMMM Do YYYY, h:mm:ss a")}
-              </span>
-            </p>
-          }
-        />
-      ))}
-    </List>
+    <div>
+      <Toolbar>
+        <ToolbarGroup>
+          <ToolbarTitle text="Comments" />
+
+          <IconMenu
+            onChange={this.onSortChange}
+            iconButtonElement={
+              <IconButton touch={true}>
+                <NavigationExpandMoreIcon />
+              </IconButton>
+            }
+          >
+            <MenuItem primaryText="voteScore" value="voteScore" />
+            <MenuItem primaryText="timestamp" value="timestamp" />
+          </IconMenu>
+          <ToolbarSeparator />
+          <Link to="/post/new">
+            <RaisedButton label="New Comment" primary={true} />{" "}
+          </Link>
+        </ToolbarGroup>
+      </Toolbar>
+      <List>
+        {comments.map((comment, i) => (
+          <ListItem
+            key={i}
+            primaryText={comment.body}
+            secondaryText={
+              <p>
+                {comment.author}
+                <span>
+                  {moment(comment.timestamp).format("MMMM Do YYYY, h:mm:ss a")}
+                </span>
+              </p>
+            }
+          />
+        ))}
+      </List>
+    </div>
   );
 };
 
