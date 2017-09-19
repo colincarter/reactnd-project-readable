@@ -5,12 +5,12 @@ import { bindActionCreators } from "redux";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import { Toolbar, ToolbarGroup, ToolbarTitle } from "material-ui/Toolbar";
-import { List, ListItem } from "material-ui/List";
 
 import * as actionCreators from "../actions";
 import Sort from "../components/Sort";
 import PostSummaryLine from "../components/PostSummaryLine";
 import Header from "../components/Header";
+import Comments from "../components/Comments";
 
 class Post extends React.Component {
   componentDidMount = () => {
@@ -37,20 +37,7 @@ class Post extends React.Component {
               {this.props.post.author}
               <span>{this.props.post.timestamp}</span>
             </p>
-
-            <List>
-              {this.props.comments.map((comment, i) => (
-                <ListItem
-                  key={i}
-                  primaryText={comment.body}
-                  secondaryText={
-                    <p>
-                      {comment.author} <span>{comment.timestamp}</span>
-                    </p>
-                  }
-                />
-              ))}
-            </List>
+            <Comments comments={this.props.comments} />
           </div>
         </MuiThemeProvider>
       );
