@@ -5,6 +5,8 @@ import { bindActionCreators } from "redux";
 import moment from "moment";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import FloatingActionButton from "material-ui/FloatingActionButton";
+import ContentAdd from "material-ui/svg-icons/content/add";
 
 import * as actionCreators from "../actions";
 import Header from "../components/Header";
@@ -17,6 +19,15 @@ class Post extends React.Component {
 
   onSortChange = event => {
     this.props.setCurrentSort(event.target.value);
+  };
+
+  style = {
+    margin: 0,
+    top: "auto",
+    right: 20,
+    bottom: 20,
+    left: "auto",
+    position: "fixed"
   };
 
   render() {
@@ -33,13 +44,20 @@ class Post extends React.Component {
             <p>{this.props.post.body}</p>
             <p>
               {this.props.post.author}
+
               <span>
+                <FormattedTimestamp timestamp={this.props.post.timestamp} />
                 {moment(this.props.post.timestamp).format(
                   "MMMM Do YYYY, h:mm:ss a"
                 )}
               </span>
             </p>
+
             <Comments comments={this.props.comments} />
+
+            <FloatingActionButton style={this.style}>
+              <ContentAdd />
+            </FloatingActionButton>
           </div>
         </MuiThemeProvider>
       );
