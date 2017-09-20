@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import FloatingActionButton from "material-ui/FloatingActionButton";
@@ -11,6 +10,8 @@ import ContentAdd from "material-ui/svg-icons/content/add";
 import * as actionCreators from "../actions";
 import Header from "../components/Header";
 import Comments from "../components/Comments";
+
+import formattedTimestamp from "../lib/formattedTimestamp";
 
 class Post extends React.Component {
   componentDidMount = () => {
@@ -45,12 +46,7 @@ class Post extends React.Component {
             <p>
               {this.props.post.author}
 
-              <span>
-                <FormattedTimestamp timestamp={this.props.post.timestamp} />
-                {moment(this.props.post.timestamp).format(
-                  "MMMM Do YYYY, h:mm:ss a"
-                )}
-              </span>
+              <span>{formattedTimestamp(this.props.post.timestamp)}</span>
             </p>
 
             <Comments comments={this.props.comments} />

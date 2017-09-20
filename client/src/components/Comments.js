@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import { List, ListItem } from "material-ui/List";
 import {
@@ -14,9 +15,7 @@ import IconButton from "material-ui/IconButton";
 import RaisedButton from "material-ui/RaisedButton";
 import NavigationExpandMoreIcon from "material-ui/svg-icons/navigation/expand-more";
 
-import { Link } from "react-router-dom";
-
-import moment from "moment";
+import formattedTimestamp from "../lib/formattedTimestamp";
 
 const Comments = ({ comments }) => {
   if (comments && comments.length === 0) {
@@ -54,9 +53,7 @@ const Comments = ({ comments }) => {
             secondaryText={
               <p>
                 {comment.author}
-                <span>
-                  {moment(comment.timestamp).format("MMMM Do YYYY, h:mm:ss a")}
-                </span>
+                <span>{formattedTimestamp(comment.timestamp)}</span>
               </p>
             }
           />

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import { Link } from "react-router-dom";
 
 import { List, ListItem } from "material-ui/List";
 import {
@@ -18,9 +18,9 @@ import IconMenu from "material-ui/IconMenu";
 import IconButton from "material-ui/IconButton";
 import FontIcon from "material-ui/FontIcon";
 
-import { Link } from "react-router-dom";
 import * as actionCreators from "../actions";
 import { ALL_POSTS } from "../constants";
+import formattedTimestamp from "../lib/formattedTimestamp";
 
 class PostSummaries extends React.Component {
   linkStyle = {
@@ -79,9 +79,7 @@ class PostSummaries extends React.Component {
                 secondaryText={
                   <p>
                     {post.category}{" "}
-                    <span>
-                      {moment(post.timestamp).format("MMMM Do YYYY, h:mm:ss a")}
-                    </span>
+                    <span>{formattedTimestamp(post.timestamp)}</span>
                   </p>
                 }
               />
