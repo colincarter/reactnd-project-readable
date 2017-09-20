@@ -87,7 +87,7 @@ class PostSummaries extends React.Component {
             </Link>
           ))}
         </List>
-        <FloatingButton />
+        <FloatingButton to="/post/new" />
       </div>
     );
   };

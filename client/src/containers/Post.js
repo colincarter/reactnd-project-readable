@@ -41,7 +41,7 @@ class Post extends React.Component {
 
             <Comments comments={this.props.comments} />
 
-            <FloatingButton />
+            <FloatingButton to="/comment/new" />
           </div>
         </MuiThemeProvider>
       );

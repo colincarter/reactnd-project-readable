@@ -54,7 +54,7 @@ class Comments extends React.Component {
               <MenuItem primaryText="timestamp" value="timestamp" />
             </IconMenu>
             <ToolbarSeparator />
-            <Link to="/post/new">
+            <Link to="/comment/new">
               <RaisedButton label="New Comment" primary={true} />{" "}
             </Link>
           </ToolbarGroup>
