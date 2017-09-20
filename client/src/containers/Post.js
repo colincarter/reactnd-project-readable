@@ -4,12 +4,11 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import FloatingActionButton from "material-ui/FloatingActionButton";
-import ContentAdd from "material-ui/svg-icons/content/add";
 
 import * as actionCreators from "../actions";
 import Header from "../components/Header";
 import Comments from "./Comments";
+import FloatingButton from "../components/FloatingButton";
 
 import formattedTimestamp from "../lib/formattedTimestamp";
 
@@ -20,15 +19,6 @@ class Post extends React.Component {
 
   onSortChange = event => {
     this.props.setCurrentSort(event.target.value);
-  };
-
-  style = {
-    margin: 0,
-    top: "auto",
-    right: 20,
-    bottom: 20,
-    left: "auto",
-    position: "fixed"
   };
 
   render() {
@@ -51,9 +41,7 @@ class Post extends React.Component {
 
             <Comments comments={this.props.comments} />
 
-            <FloatingActionButton style={this.style}>
-              <ContentAdd />
-            </FloatingActionButton>
+            <FloatingButton />
           </div>
         </MuiThemeProvider>
       );

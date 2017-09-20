@@ -22,6 +22,8 @@ import * as actionCreators from "../actions";
 import { ALL_POSTS } from "../constants";
 import formattedTimestamp from "../lib/formattedTimestamp";
 
+import FloatingButton from "../components/FloatingButton";
+
 class PostSummaries extends React.Component {
   linkStyle = {
     textDecoration: "none"
@@ -85,6 +87,7 @@ class PostSummaries extends React.Component {
             </Link>
           ))}
         </List>
+        <FloatingButton />
       </div>
     );
   };
