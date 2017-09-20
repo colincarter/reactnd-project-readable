@@ -9,7 +9,7 @@ import ContentAdd from "material-ui/svg-icons/content/add";
 
 import * as actionCreators from "../actions";
 import Header from "../components/Header";
-import Comments from "../components/Comments";
+import Comments from "./Comments";
 
 import formattedTimestamp from "../lib/formattedTimestamp";
 
