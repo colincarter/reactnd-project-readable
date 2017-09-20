@@ -32,7 +32,6 @@ class PostSummaries extends React.Component {
   };
 
   onSortChange = (event, value) => {
-    console.log({ event, value });
     this.props.setCurrentSort(value);
   };
 
