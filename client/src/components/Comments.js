@@ -30,7 +30,7 @@ class Comments extends React.Component {
   };
 
   render() {
-    const { comments, sortedComments } = this.props;
+    const { sortedComments } = this.props;
 
     if (sortedComments && sortedComments.length === 0) {
       return <h4>No Comments</h4>;
