@@ -29,12 +29,27 @@ class Comments extends React.Component {
     this.props.setCurrentSort(value);
   };
 
-  render() {
-    const { sortedComments } = this.props;
-
+  renderComments = sortedComments => {
     if (sortedComments && sortedComments.length === 0) {
       return <h4>No Comments</h4>;
     }
+
+    return sortedComments.map((comment, i) => (
+      <ListItem
+        key={i}
+        primaryText={comment.body}
+        secondaryText={
+          <p>
+            {comment.author}
+            <span>{formattedTimestamp(comment.timestamp)}</span>
+          </p>
+        }
+      />
+    ));
+  };
+
+  render() {
+    const { sortedComments } = this.props;
 
     return (
       <div>
@@ -55,20 +70,7 @@ class Comments extends React.Component {
             </IconMenu>
           </ToolbarGroup>
         </Toolbar>
-        <List>
-          {sortedComments.map((comment, i) => (
-            <ListItem
-              key={i}
-              primaryText={comment.body}
-              secondaryText={
-                <p>
-                  {comment.author}
-                  <span>{formattedTimestamp(comment.timestamp)}</span>
-                </p>
-              }
-            />
-          ))}
-        </List>
+        <List>{this.renderComments(sortedComments)}</List>
       </div>
     );
   }
