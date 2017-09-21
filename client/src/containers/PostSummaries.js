@@ -57,10 +57,6 @@ class PostSummaries extends React.Component {
               <MenuItem primaryText="voteScore" value="voteScore" />
               <MenuItem primaryText="timestamp" value="timestamp" />
             </IconMenu>
-            <ToolbarSeparator />
-            <Link to="/post/new">
-              <RaisedButton label="New Post" primary={true} />{" "}
-            </Link>
           </ToolbarGroup>
         </Toolbar>
         <List>

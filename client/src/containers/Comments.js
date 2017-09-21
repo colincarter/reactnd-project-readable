@@ -53,10 +53,6 @@ class Comments extends React.Component {
               <MenuItem primaryText="voteScore" value="voteScore" />
               <MenuItem primaryText="timestamp" value="timestamp" />
             </IconMenu>
-            <ToolbarSeparator />
-            <Link to="/comment/new">
-              <RaisedButton label="New Comment" primary={true} />{" "}
-            </Link>
           </ToolbarGroup>
         </Toolbar>
         <List>
