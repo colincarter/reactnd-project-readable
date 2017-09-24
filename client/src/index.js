@@ -8,6 +8,7 @@ import "./index.css";
 import App from "./containers/App";
 import Post from "./containers/Post";
 import NewPost from "./containers/NewPost";
+import NewComment from "./containers/NewComment";
 import registerServiceWorker from "./registerServiceWorker";
 import defaultState from "./store/defaultState";
 
@@ -21,6 +22,7 @@ ReactDOM.render(
       <Switch>
         <Route exact path="/" component={App} />
         <Route exact path="/post/new" component={NewPost} />
+        <Route exact path="/comment/new" component={NewComment} />
         <Route path="/post/:postId" component={Post} />
       </Switch>
     </Router>
