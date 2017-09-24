@@ -22,7 +22,7 @@ ReactDOM.render(
       <Switch>
         <Route exact path="/" component={App} />
         <Route exact path="/post/new" component={NewPost} />
-        <Route exact path="/comment/new" component={NewComment} />
+        <Route exact path="/comment/new/:postId" component={NewComment} />
         <Route path="/post/:postId" component={Post} />
       </Switch>
     </Router>

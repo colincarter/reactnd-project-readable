@@ -1,12 +1,14 @@
 import { get } from "lodash";
 import CategoriesAPI from "../api/categories";
 import PostsAPI from "../api/posts";
+import CommentsAPI from "../api/comments";
 import {
   ADD_CATEGORIES,
   ADD_POSTS,
   SET_CATEGORY,
   SET_CURRENT_SORT,
   ADD_COMMENTS,
+  ADD_COMMENT,
   ADD_POST
 } from "../constants";
 
@@ -42,6 +44,14 @@ export function createPost(post) {
   };
 }
 
+export function createComment(comment) {
+  return async dispatch => {
+    const commentData = await CommentsAPI.createComment(comment);
+    const commentExtra = get(commentData, "data", {});
+    dispatch(addComment({ ...comment, ...commentExtra }));
+  };
+}
+
 export function setCurrentCategory(currentCategory) {
   return {
     type: SET_CATEGORY,
@@ -74,6 +84,13 @@ const addComments = comments => {
   return {
     type: ADD_COMMENTS,
     comments
+  };
+};
+
+const addComment = comment => {
+  return {
+    type: ADD_COMMENT,
+    comment
   };
 };
 

@@ -14,13 +14,19 @@ import Header from "../components/Header";
 import * as actionCreators from "../actions";
 
 class NewComment extends React.Component {
-  state = {
-    body: "",
-    author: ""
-  };
-
   buttonStyle = {
     margin: 12
+  };
+
+  state = {
+    body: "",
+    author: "",
+    parentId: ""
+  };
+
+  componentDidMount = () => {
+    this.postId = this.props.match.params.postId;
+    this.setState({ parentId: this.postId });
   };
 
   handleOnChange = event => {
@@ -38,6 +44,7 @@ class NewComment extends React.Component {
   handlePostComment = () => {
     const newComment = { id: uniqid(), timestamp: Date.now(), ...this.state };
     this.props.createComment(newComment);
+    this.props.history.push(`/post/${this.postId}`);
   };
 
   render() {
@@ -57,6 +64,7 @@ class NewComment extends React.Component {
             name="body"
             value={this.state.body}
             rows={4}
+            onChange={this.handleOnChange}
           />
           <br />
           <TextField
@@ -87,7 +95,8 @@ class NewComment extends React.Component {
 
 NewComment.propTypes = {
   history: PropTypes.object.isRequired,
-  createComment: PropTypes.func.isRequired
+  createComment: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired
 };
 
 function mapDispatchToProps(dispatch) {
