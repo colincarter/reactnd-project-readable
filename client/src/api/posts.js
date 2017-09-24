@@ -14,4 +14,10 @@ export default class PostsAPI {
       headers: { Authorization: AUTH }
     });
   }
+
+  static createPost(post) {
+    return axios.post(`/posts`, post, {
+      headers: { Authorization: AUTH }
+    });
+  }
 }
