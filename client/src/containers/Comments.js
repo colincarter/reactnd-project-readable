@@ -1,20 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import { List, ListItem } from "material-ui/List";
-import {
-  Toolbar,
-  ToolbarGroup,
-  ToolbarSeparator,
-  ToolbarTitle
-} from "material-ui/Toolbar";
+import { Toolbar, ToolbarGroup, ToolbarTitle } from "material-ui/Toolbar";
 import MenuItem from "material-ui/MenuItem";
 import IconMenu from "material-ui/IconMenu";
 import IconButton from "material-ui/IconButton";
-import RaisedButton from "material-ui/RaisedButton";
 import NavigationExpandMoreIcon from "material-ui/svg-icons/navigation/expand-more";
 
 import * as actionCreators from "../actions";

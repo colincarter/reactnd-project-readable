@@ -5,13 +5,7 @@ import { bindActionCreators } from "redux";
 import { Link } from "react-router-dom";
 
 import { List, ListItem } from "material-ui/List";
-import {
-  Toolbar,
-  ToolbarGroup,
-  ToolbarSeparator,
-  ToolbarTitle
-} from "material-ui/Toolbar";
-import RaisedButton from "material-ui/RaisedButton";
+import { Toolbar, ToolbarGroup, ToolbarTitle } from "material-ui/Toolbar";
 import NavigationExpandMoreIcon from "material-ui/svg-icons/navigation/expand-more";
 import MenuItem from "material-ui/MenuItem";
 import IconMenu from "material-ui/IconMenu";
