@@ -25,8 +25,7 @@ class NewComment extends React.Component {
   };
 
   componentDidMount = () => {
-    this.postId = this.props.match.params.postId;
-    this.setState({ parentId: this.postId });
+    this.setState({ parentId: this.props.match.params.postId });
   };
 
   handleOnChange = event => {
@@ -44,7 +43,7 @@ class NewComment extends React.Component {
   handlePostComment = () => {
     const newComment = { id: uniqid(), timestamp: Date.now(), ...this.state };
     this.props.createComment(newComment);
-    this.props.history.push(`/post/${this.postId}`);
+    this.props.history.push(`/post/${this.state.parentId}`);
   };
 
   render() {
