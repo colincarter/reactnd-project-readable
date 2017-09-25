@@ -1,10 +1,16 @@
 import defaultState from "../store/defaultState";
-import { ADD_CATEGORIES, SET_CATEGORY } from "../constants";
+import { ADD_CATEGORIES, SET_CATEGORY, ADD_CATEGORY } from "../constants";
 
 export const categories = (state = defaultState.categories, action) => {
   switch (action.type) {
     case ADD_CATEGORIES:
       return action.categories;
+
+    case ADD_CATEGORY:
+      if (state.includes(action.category)) {
+        return state;
+      }
+      return [...state, { name: action.category, path: action.category }];
 
     default:
       return state;

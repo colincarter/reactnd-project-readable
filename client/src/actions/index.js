@@ -6,6 +6,7 @@ import {
   ADD_CATEGORIES,
   ADD_POSTS,
   SET_CATEGORY,
+  ADD_CATEGORY,
   SET_CURRENT_SORT,
   ADD_COMMENTS,
   ADD_COMMENT,
@@ -49,6 +50,13 @@ export function createComment(comment) {
     const commentData = await CommentsAPI.createComment(comment);
     const commentExtra = get(commentData, "data", {});
     dispatch(addComment({ ...comment, ...commentExtra }));
+  };
+}
+
+export function createCategory(category) {
+  return {
+    type: ADD_CATEGORY,
+    category
   };
 }
 

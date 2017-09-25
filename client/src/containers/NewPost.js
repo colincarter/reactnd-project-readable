@@ -40,13 +40,15 @@ class NewPost extends React.Component {
   };
 
   handlePost = () => {
+    const category = this.state.category.toLowerCase();
     const newPost = {
       id: uniqid(),
       timestamp: Date.now(),
       ...this.state,
-      category: this.state.category.toLowerCase()
+      category: category
     };
     this.props.createPost(newPost);
+    this.props.createCategory(category);
   };
 
   render() {
@@ -116,7 +118,8 @@ class NewPost extends React.Component {
 
 NewPost.propTypes = {
   history: PropTypes.object.isRequired,
-  createPost: PropTypes.func.isRequired
+  createPost: PropTypes.func.isRequired,
+  createCategory: PropTypes.func.isRequired
 };
 
 function mapDispatchToProps(dispatch) {
