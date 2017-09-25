@@ -8,7 +8,6 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import * as actionCreators from "../actions";
 import Header from "../components/Header";
 import Comments from "./Comments";
-import FloatingButton from "../components/FloatingButton";
 
 import formattedTimestamp from "../lib/formattedTimestamp";
 
@@ -39,9 +38,7 @@ class Post extends React.Component {
               <span>{formattedTimestamp(this.props.post.timestamp)}</span>
             </p>
 
-            <Comments comments={this.props.comments} />
-
-            <FloatingButton to={`/comment/new/${this.props.post.id}`} />
+            <Comments comments={this.props.comments} post={this.props.post} />
           </div>
         </MuiThemeProvider>
       );

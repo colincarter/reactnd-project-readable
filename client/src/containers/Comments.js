@@ -10,6 +10,7 @@ import IconMenu from "material-ui/IconMenu";
 import IconButton from "material-ui/IconButton";
 import NavigationExpandMoreIcon from "material-ui/svg-icons/navigation/expand-more";
 
+import FloatingButton from "../components/FloatingButton";
 import * as actionCreators from "../actions";
 import formattedTimestamp from "../lib/formattedTimestamp";
 
@@ -42,7 +43,7 @@ class Comments extends React.Component {
   };
 
   render() {
-    const { sortedComments } = this.props;
+    const { sortedComments, post } = this.props;
 
     return (
       <div>
@@ -62,6 +63,7 @@ class Comments extends React.Component {
               <MenuItem primaryText="timestamp" value="timestamp" />
             </IconMenu>
           </ToolbarGroup>
+          <FloatingButton to={`/comment/new/${post.id}`} />
         </Toolbar>
         <List>{this.renderComments(sortedComments)}</List>
       </div>
@@ -70,7 +72,8 @@ class Comments extends React.Component {
 }
 
 Comments.propTypes = {
-  comments: PropTypes.arrayOf(Object).isRequired
+  comments: PropTypes.arrayOf(Object).isRequired,
+  post: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, props) {

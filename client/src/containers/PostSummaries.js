@@ -52,6 +52,7 @@ class PostSummaries extends React.Component {
               <MenuItem primaryText="timestamp" value="timestamp" />
             </IconMenu>
           </ToolbarGroup>
+          <FloatingButton to="/post/new" />
         </Toolbar>
         <List>
           {this.props.postsForCategory.map((post, i) => (
@@ -77,7 +78,6 @@ class PostSummaries extends React.Component {
             </Link>
           ))}
         </List>
-        <FloatingButton to="/post/new" />
       </div>
     );
   };
