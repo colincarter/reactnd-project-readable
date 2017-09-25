@@ -40,7 +40,12 @@ class NewPost extends React.Component {
   };
 
   handlePost = () => {
-    const newPost = { id: uniqid(), timestamp: Date.now(), ...this.state };
+    const newPost = {
+      id: uniqid(),
+      timestamp: Date.now(),
+      ...this.state,
+      category: this.state.category.toLowerCase()
+    };
     this.props.createPost(newPost);
   };
 
