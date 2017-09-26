@@ -48,7 +48,7 @@ export function createPost(post) {
 
 export function deletePost(postId) {
   return async dispatch => {
-    const postData = await PostsAPI.deletePost(postId);
+    await PostsAPI.deletePost(postId);
     dispatch(removePost(postId));
   };
 }
