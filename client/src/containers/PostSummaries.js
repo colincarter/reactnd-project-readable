@@ -32,7 +32,7 @@ class PostSummaries extends React.Component {
     );
     return (
       <IconMenu iconButtonElement={iconButtonElement}>
-        <MenuItem>Edit</MenuItem>
+        <MenuItem onClick={() => this.handleEditPost(postId)}>Edit</MenuItem>
         <MenuItem onClick={() => this.handleDeletePost(postId)}>
           Delete
         </MenuItem>
@@ -54,8 +54,12 @@ class PostSummaries extends React.Component {
   };
 
   handleDeletePost = postId => {
-    console.log(postId);
     this.props.deletePost(postId);
+  };
+
+  handleEditPost = postId => {
+    const url = `/post/edit/${postId}`;
+    this.props.history.push(url);
   };
 
   render = () => {
