@@ -10,7 +10,8 @@ import {
   SET_CURRENT_SORT,
   ADD_COMMENTS,
   ADD_COMMENT,
-  ADD_POST
+  ADD_POST,
+  REMOVE_POST
 } from "../constants";
 
 export function loadCategories() {
@@ -24,7 +25,7 @@ export function loadCategories() {
 export function loadAllPosts() {
   return async dispatch => {
     const postData = await PostsAPI.loadAllPosts();
-    const posts = get(postData, "data", []);
+    const posts = get(postData, "data", []).filter(posts => !posts.deleted);
     dispatch(addPosts(posts));
   };
 }
@@ -42,6 +43,13 @@ export function createPost(post) {
     const postData = await PostsAPI.createPost(post);
     const postExtra = get(postData, "data", {});
     dispatch(addPost({ ...post, ...postExtra }));
+  };
+}
+
+export function deletePost(postId) {
+  return async dispatch => {
+    const postData = await PostsAPI.deletePost(postId);
+    dispatch(removePost(postId));
   };
 }
 
@@ -85,6 +93,13 @@ const addPosts = posts => {
   return {
     type: ADD_POSTS,
     posts
+  };
+};
+
+const removePost = postId => {
+  return {
+    type: REMOVE_POST,
+    postId
   };
 };
 

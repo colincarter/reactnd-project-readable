@@ -16,7 +16,13 @@ export default class PostsAPI {
   }
 
   static createPost(post) {
-    return axios.post(`/posts`, post, {
+    return axios.post("/posts", post, {
+      headers: { Authorization: AUTH }
+    });
+  }
+
+  static deletePost(postId) {
+    return axios.delete(`/posts/${postId}`, {
       headers: { Authorization: AUTH }
     });
   }

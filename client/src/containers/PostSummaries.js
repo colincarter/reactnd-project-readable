@@ -55,6 +55,7 @@ class PostSummaries extends React.Component {
 
   handleDeletePost = postId => {
     console.log(postId);
+    this.props.deletePost(postId);
   };
 
   render = () => {
