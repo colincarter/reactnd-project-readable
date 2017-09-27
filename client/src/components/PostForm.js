@@ -52,13 +52,13 @@ const PostForm = ({
         label="Post"
         primary={true}
         disabled={!canPost}
-        style={this.buttonStyle}
+        style={buttonStyle}
         onClick={handlePost}
       />
       <RaisedButton
         label="Reset"
         secondary={true}
-        style={this.buttonStyle}
+        style={buttonStyle}
         onClick={handleReset}
       />
     </div>

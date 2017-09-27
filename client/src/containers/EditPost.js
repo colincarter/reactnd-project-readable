@@ -5,8 +5,6 @@ import { bindActionCreators } from "redux";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import { Toolbar, ToolbarGroup, ToolbarTitle } from "material-ui/Toolbar";
-import TextField from "material-ui/TextField";
-import RaisedButton from "material-ui/RaisedButton";
 
 import Header from "../components/Header";
 import PostForm from "../components/PostForm";
@@ -17,8 +15,21 @@ class EditPost extends React.Component {
     title: "",
     body: "",
     author: "",
-    category: ""
+    category: "",
+    id: "",
+    voteScore: "",
+    deleted: ""
   };
+
+  constructor(props) {
+    super(props);
+    console.log("constructor");
+  }
+
+  componentDidMount() {
+    console.log("componentDidMount");
+    this.setState({ ...this.props.post });
+  }
 
   handleOnChange = event => {
     const name = event.target.name;
@@ -48,7 +59,7 @@ class EditPost extends React.Component {
   };
 
   render() {
-    const { title, body, author, category } = this.props.post;
+    const { title, body, author, category } = this.state;
 
     return (
       <MuiThemeProvider>
@@ -74,7 +85,12 @@ class EditPost extends React.Component {
   }
 }
 
+EditPost.propTypes = {
+  post: PropTypes.object
+};
+
 function mapStateToProps(state, props) {
+  console.log("mapStateToProps", state);
   return {
     post: state.posts.find(post => post.id === props.match.params.postId)
   };

@@ -6,8 +6,6 @@ import uniqid from "uniqid";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import { Toolbar, ToolbarGroup, ToolbarTitle } from "material-ui/Toolbar";
-import TextField from "material-ui/TextField";
-import RaisedButton from "material-ui/RaisedButton";
 
 import Header from "../components/Header";
 import PostForm from "../components/PostForm";
