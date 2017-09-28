@@ -10,6 +10,7 @@ import {
   SET_CURRENT_SORT,
   ADD_COMMENTS,
   ADD_COMMENT,
+  UPDATE_COMMENT,
   ADD_POST,
   REMOVE_POST,
   UPDATE_POST
@@ -67,6 +68,14 @@ export function createComment(comment) {
     const commentData = await CommentsAPI.createComment(comment);
     const commentExtra = get(commentData, "data", {});
     dispatch(addComment({ ...comment, ...commentExtra }));
+  };
+}
+
+export function editComment(comment) {
+  return async dispatch => {
+    const commentData = await CommentsAPI.editComment(comment);
+    const updatedComment = get(commentData, "data", {});
+    dispatch(updateComment(updatedComment));
   };
 }
 
@@ -129,6 +138,13 @@ const addComments = comments => {
 const addComment = comment => {
   return {
     type: ADD_COMMENT,
+    comment
+  };
+};
+
+const updateComment = comment => {
+  return {
+    type: UPDATE_COMMENT,
     comment
   };
 };

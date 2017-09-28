@@ -8,4 +8,10 @@ export default class CommentsAPI {
       headers: { Authorization: AUTH }
     });
   }
+
+  static editComment(comment) {
+    return axios.put(`/comments/${comment.id}`, comment, {
+      headers: { Authorization: AUTH }
+    });
+  }
 }

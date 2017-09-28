@@ -45,7 +45,7 @@ class EditComment extends React.Component {
   handlePost = () => {
     const comment = { timestamp: Date.now(), ...this.state };
     this.props.editComment(comment);
-    this.props.history.push(`/comment/${this.state.id}`);
+    this.props.history.push(`/post/${this.state.parentId}/comments`);
   };
 
   render() {
