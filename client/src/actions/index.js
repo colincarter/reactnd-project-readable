@@ -11,7 +11,8 @@ import {
   ADD_COMMENTS,
   ADD_COMMENT,
   ADD_POST,
-  REMOVE_POST
+  REMOVE_POST,
+  UPDATE_POST
 } from "../constants";
 
 export function loadCategories() {
@@ -43,6 +44,14 @@ export function createPost(post) {
     const postData = await PostsAPI.createPost(post);
     const postExtra = get(postData, "data", {});
     dispatch(addPost({ ...post, ...postExtra }));
+  };
+}
+
+export function editPost(post) {
+  return async dispatch => {
+    const postData = await PostsAPI.updatePost(post);
+    const updatedPost = get(postData, "data", {});
+    dispatch(updatePost(updatedPost));
   };
 }
 
@@ -100,6 +109,13 @@ const removePost = postId => {
   return {
     type: REMOVE_POST,
     postId
+  };
+};
+
+const updatePost = post => {
+  return {
+    type: UPDATE_POST,
+    post
   };
 };
 

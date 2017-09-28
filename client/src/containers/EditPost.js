@@ -21,15 +21,17 @@ class EditPost extends React.Component {
     deleted: ""
   };
 
-  constructor(props) {
-    super(props);
-    console.log("constructor");
-  }
+  componentDidMount = () => {
+    if (this.props.post) {
+      this.setState({ ...this.props.post });
+    }
+  };
 
-  componentDidMount() {
-    console.log("componentDidMount");
-    this.setState({ ...this.props.post });
-  }
+  componentWillReceiveProps = nextProps => {
+    if (nextProps.post) {
+      this.setState({ ...nextProps.post });
+    }
+  };
 
   handleOnChange = event => {
     const name = event.target.name;
@@ -46,19 +48,21 @@ class EditPost extends React.Component {
   };
 
   handlePost = () => {
-    // const category = this.state.category.toLowerCase();
-    // const newPost = {
-    //   id: uniqid(),
-    //   timestamp: Date.now(),
-    //   ...this.state,
-    //   category: category
-    // };
-    // this.props.createPost(newPost);
-    // this.props.createCategory(category);
-    // this.props.history.push("/");
+    const category = this.state.category.toLowerCase();
+    const post = {
+      timestamp: Date.now(),
+      ...this.state,
+      category: category
+    };
+    this.props.editPost(post);
+    this.props.createCategory(category);
+    this.props.history.push("/");
   };
 
   render() {
+    if (this.props.post === undefined) {
+      return null;
+    }
     const { title, body, author, category } = this.state;
 
     return (
@@ -90,7 +94,6 @@ EditPost.propTypes = {
 };
 
 function mapStateToProps(state, props) {
-  console.log("mapStateToProps", state);
   return {
     post: state.posts.find(post => post.id === props.match.params.postId)
   };
