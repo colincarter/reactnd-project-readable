@@ -8,7 +8,9 @@ import { Toolbar, ToolbarGroup, ToolbarTitle } from "material-ui/Toolbar";
 import MenuItem from "material-ui/MenuItem";
 import IconMenu from "material-ui/IconMenu";
 import IconButton from "material-ui/IconButton";
+import MoreVertIcon from "material-ui/svg-icons/navigation/more-vert";
 import NavigationExpandMoreIcon from "material-ui/svg-icons/navigation/expand-more";
+import { grey400 } from "material-ui/styles/colors";
 
 import FloatingButton from "../components/FloatingButton";
 import * as actionCreators from "../actions";
@@ -21,6 +23,33 @@ class Comments extends React.Component {
 
   onSortChange = (event, value) => {
     this.props.setCurrentSort(value);
+  };
+
+  renderIconMenu = commentId => {
+    const iconButtonElement = (
+      <IconButton touch={true} tooltip="more" tooltipPosition="bottom-left">
+        <MoreVertIcon color={grey400} />
+      </IconButton>
+    );
+    return (
+      <IconMenu iconButtonElement={iconButtonElement}>
+        <MenuItem onClick={() => this.handleEditComment(commentId)}>
+          Edit
+        </MenuItem>
+        <MenuItem onClick={() => this.handleDeleteComment(commentId)}>
+          Delete
+        </MenuItem>
+      </IconMenu>
+    );
+  };
+
+  handleDeleteComment = commentId => {
+    this.props.deleteComment(commentId);
+  };
+
+  handleEditComment = commentId => {
+    const url = `/comment/edit/${commentId}`;
+    this.props.history.push(url);
   };
 
   renderComments = sortedComments => {
@@ -38,6 +67,7 @@ class Comments extends React.Component {
             <span>{formattedTimestamp(comment.timestamp)}</span>
           </p>
         }
+        rightIconButton={this.renderIconMenu(comment.id)}
       />
     ));
   };
