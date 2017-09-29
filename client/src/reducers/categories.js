@@ -17,7 +17,7 @@ export const categories = (state = defaultState.categories, action) => {
         { name: action.category, path: action.category }
       ];
 
-      return sortBy(newState, ["name", "path");
+      return sortBy(newState, ["name", "path"]);
 
     default:
       return state;
