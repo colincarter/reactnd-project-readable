@@ -7,9 +7,10 @@ export const categories = (state = defaultState.categories, action) => {
       return action.categories;
 
     case ADD_CATEGORY:
-      if (state.includes(action.category)) {
+      if (state.find(category => category.name === action.category)) {
         return state;
       }
+
       return [...state, { name: action.category, path: action.category }];
 
     default:
