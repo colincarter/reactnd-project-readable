@@ -11,6 +11,7 @@ import {
   ADD_COMMENTS,
   ADD_COMMENT,
   UPDATE_COMMENT,
+  REMOVE_COMMENT,
   ADD_POST,
   REMOVE_POST,
   UPDATE_POST
@@ -76,6 +77,13 @@ export function editComment(comment) {
     const commentData = await CommentsAPI.editComment(comment);
     const updatedComment = get(commentData, "data", {});
     dispatch(updateComment(updatedComment));
+  };
+}
+
+export function deleteComment(commentId) {
+  return async dispatch => {
+    await CommentsAPI.deleteComment(commentId);
+    dispatch(removeComment(commentId));
   };
 }
 
@@ -146,6 +154,13 @@ const updateComment = comment => {
   return {
     type: UPDATE_COMMENT,
     comment
+  };
+};
+
+const removeComment = commentId => {
+  return {
+    type: REMOVE_COMMENT,
+    commentId
   };
 };
 

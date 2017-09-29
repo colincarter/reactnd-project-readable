@@ -14,4 +14,10 @@ export default class CommentsAPI {
       headers: { Authorization: AUTH }
     });
   }
+
+  static deleteComment(commentId) {
+    return axios.delete(`/comments/${commentId}`, {
+      headers: { Authorization: AUTH }
+    });
+  }
 }

@@ -1,5 +1,10 @@
 import defaultState from "../store/defaultState";
-import { ADD_COMMENTS, ADD_COMMENT, UPDATE_COMMENT } from "../constants";
+import {
+  ADD_COMMENTS,
+  ADD_COMMENT,
+  UPDATE_COMMENT,
+  REMOVE_COMMENT
+} from "../constants";
 
 function comments(state = defaultState.comments, action) {
   switch (action.type) {
@@ -14,6 +19,9 @@ function comments(state = defaultState.comments, action) {
         comment => comment.id !== action.comment.id
       );
       return [...comments, action.comment];
+
+    case REMOVE_COMMENT:
+      return state.filter(comment => comment.id !== action.commentId);
 
     default:
       return state;
