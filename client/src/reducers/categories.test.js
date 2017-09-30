@@ -17,8 +17,8 @@ describe("categories reducer", () => {
   it("adds a single category", () => {
     const state = [{ name: "name", path: "name" }];
     const expectedState = [
-      { name: "name", path: "name" },
-      { name: "blah", path: "blah" }
+      { name: "blah", path: "blah" },
+      { name: "name", path: "name" }
     ];
 
     expect(
