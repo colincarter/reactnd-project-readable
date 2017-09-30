@@ -64,7 +64,7 @@ class Comments extends React.Component {
         primaryText={comment.body}
         secondaryText={
           <p>
-            {comment.author}
+            {comment.author} | {" "}
             <span>{formattedTimestamp(comment.timestamp)}</span>
           </p>
         }

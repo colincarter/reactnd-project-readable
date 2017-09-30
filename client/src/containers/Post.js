@@ -12,10 +12,6 @@ import Comments from "./Comments";
 import formattedTimestamp from "../lib/formattedTimestamp";
 
 class Post extends React.Component {
-  componentDidMount = () => {
-    this.props.loadCommentsForPost(this.props.match.params.postId);
-  };
-
   onSortChange = event => {
     this.props.setCurrentSort(event.target.value);
   };
@@ -33,9 +29,9 @@ class Post extends React.Component {
             </h3>
             <p>{this.props.post.body}</p>
             <p>
-              {this.props.post.author}
-
-              <span>{formattedTimestamp(this.props.post.timestamp)}</span>
+              {this.props.post.author} | {" "}
+              <span>{formattedTimestamp(this.props.post.timestamp)}</span> | {" "}
+              <span>{this.props.comments.length} comments</span>
             </p>
 
             <Comments comments={this.props.comments} post={this.props.post} />
@@ -49,17 +45,19 @@ class Post extends React.Component {
 Post.propTypes = {
   history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
-  loadCommentsForPost: PropTypes.func.isRequired,
   post: PropTypes.object
 };
 
 function mapStateToProps(state, props) {
   const sortKey = state.currentSort;
   const postId = props.match.params.postId;
+  const post = state.posts.find(post => post.id === postId);
 
   return {
-    comments: state.comments.concat().sort((a, b) => b[sortKey] - a[sortKey]),
-    post: state.posts.find(post => post.id === postId)
+    post: post,
+    comments: post
+      ? post.comments.concat().sort((a, b) => b[sortKey] - a[sortKey])
+      : []
   };
 }
 

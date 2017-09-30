@@ -96,8 +96,9 @@ class PostSummaries extends React.Component {
               }
               secondaryText={
                 <p>
-                  {post.category}{" "}
-                  <span>{formattedTimestamp(post.timestamp)}</span>
+                  {post.category}  | {" "}
+                  <span>{formattedTimestamp(post.timestamp)}</span>  | {" "}
+                  <span>{post.comments.length} comments</span>
                 </p>
               }
               rightIconButton={this.renderIconMenu(post.id)}
