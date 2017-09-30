@@ -40,11 +40,6 @@ export function loadAllPosts() {
   };
 }
 
-// async function loadCommentsForPost(postId) {
-//   const commentData = ;
-//   return
-// }
-
 export function createPost(post) {
   return async dispatch => {
     const postData = await PostsAPI.createPost(post);

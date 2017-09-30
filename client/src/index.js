@@ -15,8 +15,8 @@ import registerServiceWorker from "./registerServiceWorker";
 import defaultState from "./store/defaultState";
 
 const store = configureStore(defaultState);
-store.dispatch(loadCategories());
 store.dispatch(loadAllPosts());
+store.dispatch(loadCategories());
 
 ReactDOM.render(
   <Provider store={store}>
