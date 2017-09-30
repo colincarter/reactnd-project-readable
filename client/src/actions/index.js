@@ -28,18 +28,22 @@ export function loadCategories() {
 export function loadAllPosts() {
   return async dispatch => {
     const postData = await PostsAPI.loadAllPosts();
-    const posts = get(postData, "data", []).filter(posts => !posts.deleted);
-    dispatch(addPosts(posts));
+    let posts = get(postData, "data", []).filter(posts => !posts.deleted);
+
+    posts = posts.map(async post => {
+      const commentData = await PostsAPI.loadComments(post.id);
+      const comments = get(commentData, "data", []);
+      return { ...post, comments: comments };
+    });
+
+    Promise.all(posts).then(results => dispatch(addPosts(results)));
   };
 }
 
-export function loadCommentsForPost(postId) {
-  return async dispatch => {
-    const commentData = await PostsAPI.loadComments(postId);
-    const comments = get(commentData, "data", []);
-    dispatch(addComments(comments));
-  };
-}
+// async function loadCommentsForPost(postId) {
+//   const commentData = ;
+//   return
+// }
 
 export function createPost(post) {
   return async dispatch => {
