@@ -18,18 +18,21 @@ const posts = (state = defaultState.posts, action) => {
     case REMOVE_POST:
       return state.filter(posts => posts.id !== action.postId);
 
-    case UPDATE_POST:
+    case UPDATE_POST: {
       const posts = state.filter(posts => posts.id !== action.post.id);
       return [...posts, action.post];
+    }
 
     case ADD_COMMENT:
       const postId = action.comment.parentId;
-      const newState = state.filter(post => post.id !== postId);
-      const post = state.find(post => post.id === postId);
-      if (post) {
-        post.comments.concat().push(action.comment);
-      }
-      return [...newState, ...post];
+
+      return state.map(post => {
+        if (post.id === postId) {
+          return { ...post, comments: [...post.comments, action.comment] };
+        }
+
+        return post;
+      });
 
     default:
       return state;

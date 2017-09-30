@@ -8,7 +8,6 @@ import {
   SET_CATEGORY,
   ADD_CATEGORY,
   SET_CURRENT_SORT,
-  ADD_COMMENTS,
   ADD_COMMENT,
   UPDATE_COMMENT,
   REMOVE_COMMENT,
@@ -132,13 +131,6 @@ const updatePost = post => {
   return {
     type: UPDATE_POST,
     post
-  };
-};
-
-const addComments = comments => {
-  return {
-    type: ADD_COMMENTS,
-    comments
   };
 };
 
