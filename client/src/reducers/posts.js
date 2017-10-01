@@ -15,7 +15,8 @@ const posts = (state = defaultState.posts, action) => {
       return action.posts;
 
     case ADD_POST:
-      return [...state, action.post];
+      const post = { ...action.post, comments: [] };
+      return [...state, post];
 
     case REMOVE_POST:
       return state.filter(posts => posts.id !== action.postId);
