@@ -78,10 +78,10 @@ export function editComment(comment) {
   };
 }
 
-export function deleteComment(commentId) {
+export function deleteComment(comment) {
   return async dispatch => {
-    await CommentsAPI.deleteComment(commentId);
-    dispatch(removeComment(commentId));
+    await CommentsAPI.deleteComment(comment.id);
+    dispatch(removeComment(comment));
   };
 }
 
@@ -148,10 +148,10 @@ const updateComment = comment => {
   };
 };
 
-const removeComment = commentId => {
+const removeComment = comment => {
   return {
     type: REMOVE_COMMENT,
-    commentId
+    comment
   };
 };
 

@@ -82,10 +82,14 @@ EditComment.propTypes = {
 };
 
 function mapStateToProps(state, props) {
+  const post = state.posts.find(post => post.id === props.match.params.postId);
+  const nullComment = { id: "", body: "", author: "" };
   return {
-    comment: state.comments.find(
-      comment => comment.id === props.match.params.commentId
-    )
+    comment: post
+      ? post.comments.find(
+          comment => comment.id === props.match.params.commentId
+        )
+      : nullComment
   };
 }
 

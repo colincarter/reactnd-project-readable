@@ -26,7 +26,11 @@ ReactDOM.render(
         <Route exact path="/post/new" component={NewPost} />
         <Route exact path="/post/edit/:postId" component={EditPost} />
         <Route exact path="/comment/new/:postId" component={NewComment} />
-        <Route exact path="/comment/edit/:commentId" component={EditComment} />
+        <Route
+          exact
+          path="/comment/edit/:postId/:commentId"
+          component={EditComment}
+        />
         <Route path="/post/:postId" component={Post} />
       </Switch>
     </Router>

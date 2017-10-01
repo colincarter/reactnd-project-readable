@@ -4,7 +4,9 @@ import {
   ADD_POST,
   REMOVE_POST,
   UPDATE_POST,
-  ADD_COMMENT
+  ADD_COMMENT,
+  UPDATE_COMMENT,
+  REMOVE_COMMENT
 } from "../constants";
 
 const posts = (state = defaultState.posts, action) => {
@@ -23,7 +25,7 @@ const posts = (state = defaultState.posts, action) => {
       return [...posts, action.post];
     }
 
-    case ADD_COMMENT:
+    case ADD_COMMENT: {
       const postId = action.comment.parentId;
 
       return state.map(post => {
@@ -33,6 +35,43 @@ const posts = (state = defaultState.posts, action) => {
 
         return post;
       });
+    }
+
+    case UPDATE_COMMENT: {
+      const postId = action.comment.parentId;
+
+      return state.map(post => {
+        if (post.id === postId) {
+          return {
+            ...post,
+            comments: post.comments.map(comment => {
+              if (comment.id === action.comment.id) {
+                return action.comment;
+              }
+              return comment;
+            })
+          };
+        }
+
+        return post;
+      });
+    }
+
+    case REMOVE_COMMENT: {
+      const postId = action.comment.parentId;
+      return state.map(post => {
+        if (post.id === postId) {
+          return {
+            ...post,
+            comments: post.comments.filter(
+              comment => comment.id !== action.comment.id
+            )
+          };
+        }
+
+        return post;
+      });
+    }
 
     default:
       return state;

@@ -26,7 +26,7 @@ class Comments extends React.Component {
     this.props.setCurrentSort(value);
   };
 
-  renderIconMenu = commentId => {
+  renderIconMenu = comment => {
     const iconButtonElement = (
       <IconButton touch={true} tooltip="more" tooltipPosition="bottom-left">
         <MoreVertIcon color={grey400} />
@@ -34,22 +34,22 @@ class Comments extends React.Component {
     );
     return (
       <IconMenu iconButtonElement={iconButtonElement}>
-        <MenuItem onClick={() => this.handleEditComment(commentId)}>
+        <MenuItem onClick={() => this.handleEditComment(comment)}>
           Edit
         </MenuItem>
-        <MenuItem onClick={() => this.handleDeleteComment(commentId)}>
+        <MenuItem onClick={() => this.handleDeleteComment(comment)}>
           Delete
         </MenuItem>
       </IconMenu>
     );
   };
 
-  handleDeleteComment = commentId => {
-    this.props.deleteComment(commentId);
+  handleDeleteComment = comment => {
+    this.props.deleteComment(comment);
   };
 
-  handleEditComment = commentId => {
-    const url = `/comment/edit/${commentId}`;
+  handleEditComment = comment => {
+    const url = `/comment/edit/${this.props.post.id}/${comment.id}`;
     this.props.history.push(url);
   };
 
@@ -68,7 +68,7 @@ class Comments extends React.Component {
             <span>{formattedTimestamp(comment.timestamp)}</span>
           </p>
         }
-        rightIconButton={this.renderIconMenu(comment.id)}
+        rightIconButton={this.renderIconMenu(comment)}
       />
     ));
   };
