@@ -13,9 +13,7 @@ import {
   REMOVE_COMMENT,
   ADD_POST,
   REMOVE_POST,
-  UPDATE_POST,
-  INC_VOTE_SCORE,
-  DEC_VOTE_SCORE
+  UPDATE_POST
 } from "../constants";
 
 export function loadCategories() {
