@@ -10,6 +10,7 @@ import NavigationExpandMoreIcon from "material-ui/svg-icons/navigation/expand-mo
 import MenuItem from "material-ui/MenuItem";
 import IconMenu from "material-ui/IconMenu";
 import IconButton from "material-ui/IconButton";
+import FlatButton from "material-ui/FlatButton";
 import FontIcon from "material-ui/FontIcon";
 import MoreVertIcon from "material-ui/svg-icons/navigation/more-vert";
 import { grey400 } from "material-ui/styles/colors";
@@ -62,6 +63,16 @@ class PostSummaries extends React.Component {
     this.props.history.push(url);
   };
 
+  incVoteScore = (e, post) => {
+    e.stopPropagation();
+    console.log("incVoteScore");
+  };
+
+  decVoteScore = (e, post) => {
+    e.stopPropagation();
+    console.log("decVoteScore");
+  };
+
   render = () => {
     return (
       <div>
@@ -92,12 +103,24 @@ class PostSummaries extends React.Component {
               primaryText={
                 <p>
                   {post.voteScore} <span>{post.title}</span>
+                  <span>
+                    <FlatButton
+                      label="+"
+                      style={{ minWidth: 3 }}
+                      onClick={e => this.incVoteScore(e, post)}
+                    />{" "}
+                    <FlatButton
+                      label="-"
+                      style={{ minWidth: 3 }}
+                      onClick={e => this.decVoteScore(e, post)}
+                    />
+                  </span>
                 </p>
               }
               secondaryText={
                 <p>
-                  {post.category}  | {" "}
-                  <span>{formattedTimestamp(post.timestamp)}</span>  | {" "}
+                  {post.category} | {" "}
+                  <span>{formattedTimestamp(post.timestamp)}</span> | {" "}
                   <span>{post.comments.length} comments</span>
                 </p>
               }
