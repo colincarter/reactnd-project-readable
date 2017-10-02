@@ -13,7 +13,9 @@ import {
   REMOVE_COMMENT,
   ADD_POST,
   REMOVE_POST,
-  UPDATE_POST
+  UPDATE_POST,
+  INC_VOTE_SCORE,
+  DEC_VOTE_SCORE
 } from "../constants";
 
 export function loadCategories() {
@@ -104,6 +106,17 @@ export function setCurrentSort(currentSort) {
     type: SET_CURRENT_SORT,
     currentSort
   };
+}
+
+export function incVoteScore(post) {
+  return editPost({ ...post, voteScore: post.voteScore + 1 });
+}
+
+export function decVoteScore(post) {
+  return editPost({
+    ...post,
+    voteScore: post.voteScore === 0 ? 0 : post.voteScore - 1
+  });
 }
 
 const addCategories = categories => {

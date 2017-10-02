@@ -65,12 +65,12 @@ class PostSummaries extends React.Component {
 
   incVoteScore = (e, post) => {
     e.stopPropagation();
-    console.log("incVoteScore");
+    this.props.incVoteScore(post);
   };
 
   decVoteScore = (e, post) => {
     e.stopPropagation();
-    console.log("decVoteScore");
+    this.props.decVoteScore(post);
   };
 
   render = () => {
@@ -106,12 +106,12 @@ class PostSummaries extends React.Component {
                   <span>
                     <FlatButton
                       label="+"
-                      style={{ minWidth: 3 }}
+                      style={{ minWidth: 1 }}
                       onClick={e => this.incVoteScore(e, post)}
                     />{" "}
                     <FlatButton
                       label="-"
-                      style={{ minWidth: 3 }}
+                      style={{ minWidth: 1 }}
                       onClick={e => this.decVoteScore(e, post)}
                     />
                   </span>
