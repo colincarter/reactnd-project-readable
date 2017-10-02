@@ -113,7 +113,7 @@ export function incVoteScore(post) {
 export function decVoteScore(post) {
   return editPost({
     ...post,
-    voteScore: post.voteScore === 0 ? 0 : post.voteScore - 1
+    voteScore: post.voteScore - 1
   });
 }
 
