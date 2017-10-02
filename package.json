@@ -3,19 +3,18 @@
   "version": "0.0.1",
   "description": "A server for the Udacity Reddit Clone project for ReactND",
   "main": "index.js",
-  "keywords": [
-    "udacity",
-    "redux",
-    "readable",
-    "react"
-  ],
+  "keywords": ["udacity", "redux", "readable", "react"],
   "author": "David Harris",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.1",
+    "clone": "^2.1.1",
+    "concurrently": "^3.5.0",
     "cors": "^2.8.3",
     "dotenv": "^4.0.0",
-    "express": "^4.15.2",
-    "clone": "^2.1.1"
+    "express": "^4.15.2"
+  },
+  "scripts": {
+    "start": "concurrently \"node server.js\" \"cd client && npm run start\""
   }
 }
