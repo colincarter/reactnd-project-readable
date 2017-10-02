@@ -7,6 +7,7 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 
 import * as actionCreators from "../actions";
 import Header from "../components/Header";
+import VotingButtons from "../components/VotingButtons";
 import Comments from "./Comments";
 
 import formattedTimestamp from "../lib/formattedTimestamp";
@@ -14,6 +15,14 @@ import formattedTimestamp from "../lib/formattedTimestamp";
 class Post extends React.Component {
   onSortChange = event => {
     this.props.setCurrentSort(event.target.value);
+  };
+
+  incVoteScore = post => {
+    this.props.incVoteScore(post);
+  };
+
+  decVoteScore = post => {
+    this.props.decVoteScore(post);
   };
 
   render() {
@@ -26,6 +35,11 @@ class Post extends React.Component {
             <Header title="Readable" history={this.props.history} />
             <h3>
               {this.props.post.voteScore} <span>{this.props.post.title}</span>
+              <VotingButtons
+                post={this.props.post}
+                incVoteScore={this.incVoteScore}
+                decVoteScore={this.decVoteScore}
+              />
             </h3>
             <p>{this.props.post.body}</p>
             <p>

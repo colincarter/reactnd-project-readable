@@ -10,7 +10,6 @@ import NavigationExpandMoreIcon from "material-ui/svg-icons/navigation/expand-mo
 import MenuItem from "material-ui/MenuItem";
 import IconMenu from "material-ui/IconMenu";
 import IconButton from "material-ui/IconButton";
-import FlatButton from "material-ui/FlatButton";
 import FontIcon from "material-ui/FontIcon";
 import MoreVertIcon from "material-ui/svg-icons/navigation/more-vert";
 import { grey400 } from "material-ui/styles/colors";
@@ -19,6 +18,7 @@ import { ALL_POSTS } from "../constants";
 import formattedTimestamp from "../lib/formattedTimestamp";
 
 import FloatingButton from "../components/FloatingButton";
+import VotingButtons from "../components/VotingButtons";
 
 class PostSummaries extends React.Component {
   linkStyle = {
@@ -63,13 +63,11 @@ class PostSummaries extends React.Component {
     this.props.history.push(url);
   };
 
-  incVoteScore = (e, post) => {
-    e.stopPropagation();
+  incVoteScore = post => {
     this.props.incVoteScore(post);
   };
 
-  decVoteScore = (e, post) => {
-    e.stopPropagation();
+  decVoteScore = post => {
     this.props.decVoteScore(post);
   };
 
@@ -103,18 +101,11 @@ class PostSummaries extends React.Component {
               primaryText={
                 <p>
                   {post.voteScore} <span>{post.title}</span>
-                  <span>
-                    <FlatButton
-                      label="+"
-                      style={{ minWidth: 1 }}
-                      onClick={e => this.incVoteScore(e, post)}
-                    />{" "}
-                    <FlatButton
-                      label="-"
-                      style={{ minWidth: 1 }}
-                      onClick={e => this.decVoteScore(e, post)}
-                    />
-                  </span>
+                  <VotingButtons
+                    post={post}
+                    incVoteScore={this.incVoteScore}
+                    decVoteScore={this.decVoteScore}
+                  />
                 </p>
               }
               secondaryText={
