@@ -117,6 +117,14 @@ export function decVoteScore(post) {
   });
 }
 
+export function incCommentVoteScore(comment) {
+  return editComment({ ...comment, voteScore: comment.voteScore + 1 });
+}
+
+export function decCommentVoteScore(comment) {
+  return editComment({ ...comment, voteScore: comment.voteScore - 1 });
+}
+
 const addCategories = categories => {
   return {
     type: ADD_CATEGORIES,

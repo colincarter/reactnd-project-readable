@@ -14,6 +14,7 @@ import NavigationExpandMoreIcon from "material-ui/svg-icons/navigation/expand-mo
 import { grey400 } from "material-ui/styles/colors";
 
 import FloatingButton from "../components/FloatingButton";
+import VotingButtons from "../components/VotingButtons";
 import * as actionCreators from "../actions";
 import formattedTimestamp from "../lib/formattedTimestamp";
 
@@ -53,6 +54,14 @@ class Comments extends React.Component {
     this.props.history.push(url);
   };
 
+  incVoteScore = comment => {
+    this.props.incCommentVoteScore(comment);
+  };
+
+  decVoteScore = comment => {
+    this.props.decCommentVoteScore(comment);
+  };
+
   renderComments = sortedComments => {
     if (sortedComments && sortedComments.length === 0) {
       return <h4>No Comments</h4>;
@@ -61,7 +70,16 @@ class Comments extends React.Component {
     return sortedComments.map((comment, i) => (
       <ListItem
         key={i}
-        primaryText={comment.body}
+        primaryText={
+          <p>
+            {comment.voteScore}  <span>{comment.body}</span>
+            <VotingButtons
+              post={comment}
+              incVoteScore={this.incVoteScore}
+              decVoteScore={this.decVoteScore}
+            />
+          </p>
+        }
         secondaryText={
           <p>
             {comment.author} | {" "}
@@ -106,7 +124,9 @@ Comments.propTypes = {
   comments: PropTypes.arrayOf(Object).isRequired,
   post: PropTypes.object.isRequired,
   sortedComments: PropTypes.arrayOf(Object).isRequired,
-  setCurrentSort: PropTypes.func.isRequired
+  setCurrentSort: PropTypes.func.isRequired,
+  incCommentVoteScore: PropTypes.func.isRequired,
+  decCommentVoteScore: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state, props) {
