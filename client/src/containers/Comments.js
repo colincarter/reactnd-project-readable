@@ -104,7 +104,9 @@ class Comments extends React.Component {
 
 Comments.propTypes = {
   comments: PropTypes.arrayOf(Object).isRequired,
-  post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired,
+  sortedComments: PropTypes.arrayOf(Object).isRequired,
+  setCurrentSort: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state, props) {

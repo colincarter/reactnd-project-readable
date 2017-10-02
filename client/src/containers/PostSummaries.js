@@ -127,7 +127,11 @@ class PostSummaries extends React.Component {
 
 PostSummaries.propTypes = {
   postsForCategory: PropTypes.arrayOf(Object).isRequired,
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
+  deletePost: PropTypes.func.isRequired,
+  setCurrentSort: PropTypes.func.isRequired,
+  incVoteScore: PropTypes.func.isRequired,
+  decVoteScore: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state, props) {

@@ -59,7 +59,8 @@ class Post extends React.Component {
 Post.propTypes = {
   history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
-  post: PropTypes.object
+  post: PropTypes.object,
+  comments: PropTypes.arrayOf(Object).isRequired
 };
 
 function mapStateToProps(state, props) {

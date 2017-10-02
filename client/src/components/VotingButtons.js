@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import FlatButton from "material-ui/FlatButton";
 
 const VotingButtons = ({ post, incVoteScore, decVoteScore }) => {
@@ -24,6 +25,12 @@ const VotingButtons = ({ post, incVoteScore, decVoteScore }) => {
       />
     </span>
   );
+};
+
+VotingButtons.propTypes = {
+  post: PropTypes.object.isRequired,
+  incVoteScore: PropTypes.func.isRequired,
+  decVoteScore: PropTypes.func.isRequired
 };
 
 export default VotingButtons;

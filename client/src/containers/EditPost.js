@@ -90,7 +90,10 @@ class EditPost extends React.Component {
 }
 
 EditPost.propTypes = {
-  post: PropTypes.object
+  post: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  editPost: PropTypes.func.isRequired,
+  createCategory: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state, props) {

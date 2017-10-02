@@ -78,7 +78,8 @@ class EditComment extends React.Component {
 
 EditComment.propTypes = {
   comment: PropTypes.object,
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
+  editComment: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state, props) {
