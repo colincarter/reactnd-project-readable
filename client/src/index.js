@@ -36,7 +36,7 @@ ReactDOM.render(
           path="/comment/edit/:postId/:commentId"
           component={EditComment}
         />
-        <Route path="/post/:postId" component={Post} />
+        <Route path="/:/:postId" component={Post} />
         <Route path="/:category" component={App} />
       </Switch>
     </Router>
