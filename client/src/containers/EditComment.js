@@ -45,7 +45,9 @@ class EditComment extends React.Component {
   handlePost = () => {
     const comment = { timestamp: Date.now(), ...this.state };
     this.props.editComment(comment);
-    this.props.history.push(`/post/${this.state.parentId}/comments`);
+    this.props.history.push(
+      `/${this.props.post.category}/${this.state.parentId}`
+    );
   };
 
   render() {
@@ -86,6 +88,7 @@ function mapStateToProps(state, props) {
   const post = state.posts.find(post => post.id === props.match.params.postId);
   const nullComment = { id: "", body: "", author: "" };
   return {
+    post: post,
     comment: post
       ? post.comments.find(
           comment => comment.id === props.match.params.commentId

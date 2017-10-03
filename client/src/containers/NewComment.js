@@ -43,7 +43,9 @@ class NewComment extends React.Component {
   handlePostComment = () => {
     const newComment = { id: uniqid(), timestamp: Date.now(), ...this.state };
     this.props.createComment(newComment);
-    this.props.history.push(`/post/${this.state.parentId}`);
+    this.props.history.push(
+      `/${this.props.post.category}/${this.state.parentId}`
+    );
   };
 
   render() {
@@ -98,7 +100,13 @@ NewComment.propTypes = {
   match: PropTypes.object.isRequired
 };
 
+function mapStateToProps(state, props) {
+  return {
+    post: state.posts.find(post => post.id === this.props.match.params.postId)
+  };
+}
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(actionCreators, dispatch);
 }
-export default connect(null, mapDispatchToProps)(NewComment);
+export default connect(mapStateToProps, mapDispatchToProps)(NewComment);

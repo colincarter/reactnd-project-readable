@@ -49,8 +49,8 @@ class PostSummaries extends React.Component {
     this.props.setCurrentSort(value);
   };
 
-  handleListClick = postId => {
-    const url = `/post/${postId}/comments`;
+  handleListClick = (category, postId) => {
+    const url = `/${category}/${postId}`;
     this.props.history.push(url);
   };
 
@@ -117,7 +117,7 @@ class PostSummaries extends React.Component {
                 </p>
               }
               rightIconButton={this.renderIconMenu(post.id)}
-              onClick={() => this.handleListClick(post.id)}
+              onClick={() => this.handleListClick(post.category, post.id)}
             />
           ))}
         </List>
