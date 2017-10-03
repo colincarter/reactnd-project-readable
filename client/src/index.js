@@ -1,7 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
 import configureStore from "./store/configureStore";
 import { loadCategories, loadAllPosts } from "./actions";
 import "./index.css";
@@ -22,7 +27,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <Switch>
-        <Route exact path="/" component={App} />
+        <Route exact path="/" render={() => <Redirect to={"/all"} />} />
         <Route exact path="/post/new" component={NewPost} />
         <Route exact path="/post/edit/:postId" component={EditPost} />
         <Route exact path="/comment/new/:postId" component={NewComment} />
@@ -32,6 +37,7 @@ ReactDOM.render(
           component={EditComment}
         />
         <Route path="/post/:postId" component={Post} />
+        <Route path="/:category" component={App} />
       </Switch>
     </Router>
   </Provider>,
