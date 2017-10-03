@@ -112,6 +112,7 @@ class PostSummaries extends React.Component {
                 <p>
                   {post.category} | {" "}
                   <span>{formattedTimestamp(post.timestamp)}</span> | {" "}
+                  <span>{post.author}</span> | {" "}
                   <span>{post.comments.length} comments</span>
                 </p>
               }
