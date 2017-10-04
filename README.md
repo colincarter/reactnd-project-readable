@@ -2,7 +2,7 @@
 
 ## Installation and running
 
-Install packages: `npm install && cd client && npm install`
+Install packages: `npm install && cd client && npm install && cd ..`
 Launch development server and application in the browser: `npm run start`
 
 ## Notes
