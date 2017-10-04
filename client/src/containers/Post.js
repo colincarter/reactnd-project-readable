@@ -33,21 +33,22 @@ class Post extends React.Component {
         <MuiThemeProvider>
           <div>
             <Header title="Readable" history={this.props.history} />
-            <h3>
-              {this.props.post.voteScore} <span>{this.props.post.title}</span>
-              <VotingButtons
-                post={this.props.post}
-                incVoteScore={this.incVoteScore}
-                decVoteScore={this.decVoteScore}
-              />
-            </h3>
-            <p>{this.props.post.body}</p>
-            <p>
-              {this.props.post.author} | {" "}
-              <span>{formattedTimestamp(this.props.post.timestamp)}</span> | {" "}
-              <span>{this.props.comments.length} comments</span>
-            </p>
-
+            <div style={{ paddingLeft: 10 }}>
+              <h3>
+                {this.props.post.voteScore} <span>{this.props.post.title}</span>
+                <VotingButtons
+                  post={this.props.post}
+                  incVoteScore={this.incVoteScore}
+                  decVoteScore={this.decVoteScore}
+                />
+              </h3>
+              <p>{this.props.post.body}</p>
+              <p>
+                {this.props.post.author} | {" "}
+                <span>{formattedTimestamp(this.props.post.timestamp)}</span> | {" "}
+                <span>{this.props.comments.length} comments</span>
+              </p>
+            </div>
             <Comments comments={this.props.comments} post={this.props.post} />
           </div>
         </MuiThemeProvider>

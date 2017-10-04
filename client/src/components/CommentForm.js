@@ -11,11 +11,12 @@ const CommentForm = ({
   handleReset,
   handlePost
 }) => {
+  const formStyle = { paddingLeft: 10 };
   const buttonStyle = { margin: 12 };
   const canPost = body && author;
 
   return (
-    <div>
+    <div style={formStyle}>
       <TextField
         hintText="Comment body"
         name="body"

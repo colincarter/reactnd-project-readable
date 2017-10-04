@@ -67,7 +67,7 @@ class EditPost extends React.Component {
 
     return (
       <MuiThemeProvider>
-        <div>
+        <div style={{ paddingLeft: 10 }}>
           <Header title="Readable" history={this.props.history} />
           <Toolbar>
             <ToolbarGroup>
