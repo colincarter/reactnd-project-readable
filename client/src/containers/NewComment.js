@@ -102,7 +102,7 @@ NewComment.propTypes = {
 
 function mapStateToProps(state, props) {
   return {
-    post: state.posts.find(post => post.id === this.props.match.params.postId)
+    post: state.posts.find(post => post.id === props.match.params.postId)
   };
 }
 
