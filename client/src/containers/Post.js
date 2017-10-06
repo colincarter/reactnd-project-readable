@@ -4,6 +4,12 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import { List, ListItem } from "material-ui/List";
+import MenuItem from "material-ui/MenuItem";
+import IconMenu from "material-ui/IconMenu";
+import IconButton from "material-ui/IconButton";
+import MoreVertIcon from "material-ui/svg-icons/navigation/more-vert";
+import { grey400 } from "material-ui/styles/colors";
 
 import * as actionCreators from "../actions";
 import Header from "../components/Header";
@@ -13,6 +19,32 @@ import Comments from "./Comments";
 import formattedTimestamp from "../lib/formattedTimestamp";
 
 class Post extends React.Component {
+  renderIconMenu = postId => {
+    const iconButtonElement = (
+      <IconButton touch={true} tooltip="more" tooltipPosition="bottom-left">
+        <MoreVertIcon color={grey400} />
+      </IconButton>
+    );
+    return (
+      <IconMenu iconButtonElement={iconButtonElement}>
+        <MenuItem onClick={() => this.handleEditPost(postId)}>Edit</MenuItem>
+        <MenuItem onClick={() => this.handleDeletePost(postId)}>
+          Delete
+        </MenuItem>
+      </IconMenu>
+    );
+  };
+
+  handleDeletePost = postId => {
+    this.props.deletePost(postId);
+    this.props.history.push("/");
+  };
+
+  handleEditPost = postId => {
+    const url = `/post/edit/${postId}`;
+    this.props.history.push(url);
+  };
+
   onSortChange = event => {
     this.props.setCurrentSort(event.target.value);
   };
@@ -34,20 +66,33 @@ class Post extends React.Component {
           <div>
             <Header title="Readable" history={this.props.history} />
             <div style={{ paddingLeft: 10 }}>
-              <h3>
-                {this.props.post.voteScore} <span>{this.props.post.title}</span>
-                <VotingButtons
-                  post={this.props.post}
-                  incVoteScore={this.incVoteScore}
-                  decVoteScore={this.decVoteScore}
+              <List>
+                <ListItem
+                  key={0}
+                  primaryText={
+                    <div>
+                      <h3>
+                        {this.props.post.voteScore}{" "}
+                        <span>{this.props.post.title}</span>
+                        <VotingButtons
+                          post={this.props.post}
+                          incVoteScore={this.incVoteScore}
+                          decVoteScore={this.decVoteScore}
+                        />
+                      </h3>
+                      <p>{this.props.post.body}</p>
+                      <p>
+                        {this.props.post.author} | {" "}
+                        <span>
+                          {formattedTimestamp(this.props.post.timestamp)}
+                        </span>{" "}
+                        | <span>{this.props.comments.length} comments</span>
+                      </p>
+                    </div>
+                  }
+                  rightIconButton={this.renderIconMenu(this.props.post.id)}
                 />
-              </h3>
-              <p>{this.props.post.body}</p>
-              <p>
-                {this.props.post.author} | {" "}
-                <span>{formattedTimestamp(this.props.post.timestamp)}</span> | {" "}
-                <span>{this.props.comments.length} comments</span>
-              </p>
+              </List>
             </div>
             <Comments comments={this.props.comments} post={this.props.post} />
           </div>
