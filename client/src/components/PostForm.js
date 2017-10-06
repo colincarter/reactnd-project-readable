@@ -17,7 +17,7 @@ const PostForm = ({
   const canPost = title && body && author && category;
 
   return (
-    <div>
+    <div style={{ paddingLeft: 10 }}>
       <TextField
         hintText="Post title"
         name="title"
