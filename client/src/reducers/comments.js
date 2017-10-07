@@ -3,7 +3,8 @@ import {
   ADD_COMMENTS,
   ADD_COMMENT,
   UPDATE_COMMENT,
-  REMOVE_COMMENT
+  REMOVE_COMMENT,
+  REMOVE_ALL_COMMENTS
 } from "../constants";
 
 const comments = (state = defaultState, action) => {
@@ -44,6 +45,12 @@ const comments = (state = defaultState, action) => {
           comment => comment.id !== action.comment.id
         )
       };
+    }
+
+    case REMOVE_ALL_COMMENTS: {
+      let newState = { ...state };
+      delete newState[action.postId];
+      return newState;
     }
 
     default:

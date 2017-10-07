@@ -11,6 +11,7 @@ import {
   ADD_COMMENT,
   UPDATE_COMMENT,
   REMOVE_COMMENT,
+  REMOVE_ALL_COMMENTS,
   ADD_COMMENTS,
   ADD_POST,
   REMOVE_POST,
@@ -66,6 +67,7 @@ export function deletePost(postId) {
   return async dispatch => {
     await PostsAPI.deletePost(postId);
     dispatch(removePost(postId));
+    dispatch(removeAllComments(postId));
   };
 }
 
@@ -186,6 +188,13 @@ const removeComment = comment => {
   return {
     type: REMOVE_COMMENT,
     comment
+  };
+};
+
+const removeAllComments = postId => {
+  return {
+    type: REMOVE_ALL_COMMENTS,
+    postId
   };
 };
 
