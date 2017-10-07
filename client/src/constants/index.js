@@ -13,3 +13,4 @@ export const REMOVE_POST = "REMOVE_POST";
 export const UPDATE_POST = "UPDATE_POST";
 export const INC_VOTE_SCORE = "INC_VOTE_SCORE";
 export const DEC_VOTE_SCORE = "DEC_VOTE_SCORE";
+export const SET_LOADING = "SET_LOADING";

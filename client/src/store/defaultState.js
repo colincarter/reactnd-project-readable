@@ -5,7 +5,8 @@ const defaultState = {
   currentCategory: ALL_POSTS,
   posts: [],
   comments: {},
-  currentSort: ""
+  currentSort: "",
+  loading: false
 };
 
 export default defaultState;

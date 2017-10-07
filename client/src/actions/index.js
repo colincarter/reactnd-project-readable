@@ -14,7 +14,8 @@ import {
   ADD_COMMENTS,
   ADD_POST,
   REMOVE_POST,
-  UPDATE_POST
+  UPDATE_POST,
+  SET_LOADING
 } from "../constants";
 
 export function loadCategories() {
@@ -27,17 +28,21 @@ export function loadCategories() {
 
 export function loadAllPosts() {
   return async dispatch => {
+    dispatch(setLoading(true));
+
     const postData = await PostsAPI.loadAllPosts();
     let posts = get(postData, "data", []).filter(posts => !posts.deleted);
 
     dispatch(addPosts(posts));
 
-    posts.forEach(post => {
-      PostsAPI.loadComments(post.id).then(result => {
+    const allComments = posts.map(post => {
+      return PostsAPI.loadComments(post.id).then(result => {
         const comments = get(result, "data", []);
         dispatch(addComments(post.id, comments));
       });
     });
+
+    Promise.all(allComments).then(() => dispatch(setLoading(false)));
   };
 }
 
@@ -188,5 +193,12 @@ const addPost = post => {
   return {
     type: ADD_POST,
     post
+  };
+};
+
+const setLoading = loading => {
+  return {
+    type: SET_LOADING,
+    loading
   };
 };
