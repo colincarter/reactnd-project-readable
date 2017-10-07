@@ -1,13 +1,9 @@
 import posts from "./posts";
-import { ADD_COMMENT } from "../constants";
+import { ADD_POST } from "../constants";
 
-describe("posts reducer", () => {
-  it("adds a comment to a post", () => {
-    const state = [{ id: "1", comments: [] }];
-    const comment = { parentId: "1" };
-    const expected = [{ id: "1", comments: [comment] }];
-    expect(posts(state, { type: ADD_COMMENT, comment: comment })).toEqual(
-      expected
-    );
+describe("post reducer", () => {
+  it("adds a new post", () => {
+    const post = { id: "1", body: "body" };
+    expect(posts([], { type: ADD_POST, post })).toEqual([post]);
   });
 });

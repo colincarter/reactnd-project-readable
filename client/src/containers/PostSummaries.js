@@ -41,6 +41,10 @@ class PostSummaries extends React.Component {
     );
   };
 
+  shouldComponentUpdate = (nextProps, nextState) => {
+    return Object.keys(nextProps.comments).length > 0;
+  };
+
   componentDidMount = () => {
     this.props.setCurrentSort("voteScore");
   };
@@ -72,6 +76,8 @@ class PostSummaries extends React.Component {
   };
 
   render = () => {
+    const comments = this.props.comments;
+
     return (
       <div>
         <Toolbar>
@@ -113,7 +119,12 @@ class PostSummaries extends React.Component {
                   {post.category} | {" "}
                   <span>{formattedTimestamp(post.timestamp)}</span> | {" "}
                   <span>{post.author}</span> | {" "}
-                  <span>{post.comments.length} comments</span>
+                  {
+                    <span>
+                      {comments[post.id] ? comments[post.id].length : 0}{" "}
+                      comments
+                    </span>
+                  }
                 </p>
               }
               rightIconButton={this.renderIconMenu(post.id)}
@@ -144,7 +155,8 @@ function mapStateToProps(state, props) {
   const sortKey = state.currentSort;
 
   return {
-    postsForCategory: posts.concat().sort((a, b) => b[sortKey] - a[sortKey])
+    postsForCategory: posts.concat().sort((a, b) => b[sortKey] - a[sortKey]),
+    comments: state.comments
   };
 }
 

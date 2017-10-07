@@ -4,6 +4,7 @@ const defaultState = {
   categories: [],
   currentCategory: ALL_POSTS,
   posts: [],
+  comments: {},
   currentSort: ""
 };
 

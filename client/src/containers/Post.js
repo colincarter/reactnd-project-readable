@@ -114,10 +114,12 @@ function mapStateToProps(state, props) {
   const postId = props.match.params.postId;
   const post = state.posts.find(post => post.id === postId);
 
+  const commentsForPost = state.comments[post.id] || [];
+
   return {
     post: post,
     comments: post
-      ? post.comments.concat().sort((a, b) => b[sortKey] - a[sortKey])
+      ? commentsForPost.concat().sort((a, b) => b[sortKey] - a[sortKey])
       : []
   };
 }

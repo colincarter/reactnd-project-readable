@@ -11,6 +11,7 @@ import {
   ADD_COMMENT,
   UPDATE_COMMENT,
   REMOVE_COMMENT,
+  ADD_COMMENTS,
   ADD_POST,
   REMOVE_POST,
   UPDATE_POST
@@ -29,13 +30,14 @@ export function loadAllPosts() {
     const postData = await PostsAPI.loadAllPosts();
     let posts = get(postData, "data", []).filter(posts => !posts.deleted);
 
-    posts = posts.map(async post => {
-      const commentData = await PostsAPI.loadComments(post.id);
-      const comments = get(commentData, "data", []);
-      return { ...post, comments: comments };
-    });
+    dispatch(addPosts(posts));
 
-    Promise.all(posts).then(results => dispatch(addPosts(results)));
+    posts.forEach(post => {
+      PostsAPI.loadComments(post.id).then(result => {
+        const comments = get(result, "data", []);
+        dispatch(addComments(post.id, comments));
+      });
+    });
   };
 }
 
@@ -164,6 +166,14 @@ const updateComment = comment => {
   return {
     type: UPDATE_COMMENT,
     comment
+  };
+};
+
+const addComments = (postId, comments) => {
+  return {
+    type: ADD_COMMENTS,
+    postId,
+    comments
   };
 };
 
