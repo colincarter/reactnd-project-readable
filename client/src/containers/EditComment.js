@@ -86,9 +86,10 @@ EditComment.propTypes = {
 
 function mapStateToProps(state, props) {
   const post = state.posts.find(post => post.id === props.match.params.postId);
+  const commentForPost = (post && state.comments[post.id]) || [];
   return {
     post: post,
-    comment: state.comments[post.id].find(
+    comment: commentForPost.find(
       comment => comment.id === props.match.params.commentId
     )
   };

@@ -114,7 +114,7 @@ function mapStateToProps(state, props) {
   const postId = props.match.params.postId;
   const post = state.posts.find(post => post.id === postId);
 
-  const commentsForPost = state.comments[post.id] || [];
+  const commentsForPost = (post && state.comments[post.id]) || [];
 
   return {
     post: post,
